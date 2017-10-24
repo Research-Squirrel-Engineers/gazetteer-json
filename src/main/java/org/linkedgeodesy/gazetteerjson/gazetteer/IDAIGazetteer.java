@@ -38,13 +38,13 @@ public class IDAIGazetteer {
                 redirect = true;
             }
         }
-        System.out.println("Response Code ... " + status);
         if (redirect) {
             String newUrl = con.getHeaderField("Location");
             // open the new connnection again
             con = (HttpURLConnection) new URL(newUrl).openConnection();
             con.setRequestProperty("Accept", "application/vnd.geo+json");
-            System.out.println("Redirect to URL : " + newUrl);
+            int responseCode2 = con.getResponseCode();
+            System.out.println("Redirect to URL : " + responseCode + " - " + newUrl);
         }
         if (responseCode < 400) {
             BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream(), "UTF-8"));
@@ -68,7 +68,6 @@ public class IDAIGazetteer {
             }
             json.setGeometry((JSONObject) jsonObject.get("geometry"));
             json.setProperties(uri, id, "dai", names);
-            System.out.println(jsonObject.toString());
         }
         return json;
     }
