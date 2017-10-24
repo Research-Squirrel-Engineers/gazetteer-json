@@ -23,7 +23,7 @@ public class Main {
         List<String> o = new ArrayList();
         try {
             // get POM Info
-            o.add(POM_gazetteerjson.getInfo().toJSONString());
+            //o.add(POM_gazetteerjson.getInfo().toJSONString());
             FileOutput.writeFile(o);
         } catch (Exception e) {
             System.out.println(Logging.getMessageJSON(e, "org.linkedgeodesy.gazetteerjson.run.Main").toJSONString());
