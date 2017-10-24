@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import org.linkedgeodesy.gazetteerjson.gazetteer.IDAIGazetteer;
 
 /**
  * main class for running
@@ -24,6 +25,7 @@ public class Main {
         try {
             // get POM Info
             //o.add(POM_gazetteerjson.getInfo().toJSONString());
+            o.add(IDAIGazetteer.getResource("2181124").toJSONString());
             FileOutput.writeFile(o);
         } catch (Exception e) {
             System.out.println(Logging.getMessageJSON(e, "org.linkedgeodesy.gazetteerjson.run.Main").toJSONString());
