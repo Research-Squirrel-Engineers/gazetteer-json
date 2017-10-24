@@ -1,6 +1,6 @@
 language: java
 script:
-  - mvn clean install site exec:java
+  - mvn clean install site
 notifications:
   email:
     recipients:
