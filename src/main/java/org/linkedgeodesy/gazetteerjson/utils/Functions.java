@@ -24,8 +24,8 @@ public class Functions {
         JSONArray result = new JSONArray();
         Double lonDiff = upperleftLon + (lowerrightLon - upperleftLon) / 2;
         Double latDiff = upperrightLat + (upperleftLat - upperrightLat) / 2;
-        result.add(lonDiff);
-        result.add(latDiff);
+        result.add(round(lonDiff, 5));
+        result.add(round(latDiff, 5));
         return result;
     }
 

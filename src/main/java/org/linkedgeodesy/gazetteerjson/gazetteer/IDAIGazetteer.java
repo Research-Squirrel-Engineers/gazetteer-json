@@ -180,7 +180,7 @@ public class IDAIGazetteer {
                 double normalizedlevenshtein = StringSimilarity.NormalizedLevenshtein(searchString, (String) prefName.get("title"));
                 double dameraulevenshtein = StringSimilarity.Damerau(searchString, (String) prefName.get("title"));
                 double jarowinkler = StringSimilarity.JaroWinkler(searchString, (String) prefName.get("title"));
-                feature.setPropertiesStringSimilarity(Functions.round(levenshtein, 2), Functions.round(normalizedlevenshtein, 2), Functions.round(dameraulevenshtein, 2), Functions.round(jarowinkler, 2), searchString, (String) prefName.get("title"));
+                feature.setPropertiesStringSimilarity(levenshtein, normalizedlevenshtein, dameraulevenshtein, jarowinkler, searchString, (String) prefName.get("title"));
                 // set metadata
                 json.setMetadata("dai", null, null, null, null, null, null, null, null, searchString);
             }

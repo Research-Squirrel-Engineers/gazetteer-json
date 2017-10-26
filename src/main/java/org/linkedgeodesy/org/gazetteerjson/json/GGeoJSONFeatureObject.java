@@ -48,10 +48,10 @@ public class GGeoJSONFeatureObject extends GGeoJSONSingleFeature {
         JSONObject similarity = new JSONObject();
         similarity.put("searchString", searchString);
         similarity.put("gazetteerString", gazetteerString);
-        similarity.put("levenshtein", levenshtein);
-        similarity.put("normalizedlevenshtein", normalizedlevenshtein);
-        similarity.put("dameraulevenshtein", dameraulevenshtein);
-        similarity.put("jarowinkler", jarowinkler);
+        similarity.put("levenshtein", Functions.round(levenshtein, 2));
+        similarity.put("normalizedlevenshtein", Functions.round(normalizedlevenshtein, 2));
+        similarity.put("dameraulevenshtein", Functions.round(dameraulevenshtein, 2));
+        similarity.put("jarowinkler", Functions.round(jarowinkler, 2));
         properties.put("similarity", similarity);
         super.put("properties", properties);
     }
