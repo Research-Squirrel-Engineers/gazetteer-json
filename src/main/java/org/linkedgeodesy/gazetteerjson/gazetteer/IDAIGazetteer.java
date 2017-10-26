@@ -10,6 +10,8 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
+import org.linkedgeodesy.gazetteerjson.utils.Functions;
+import org.linkedgeodesy.gazetteerjson.utils.StringSimilarity;
 import org.linkedgeodesy.org.gazetteerjson.json.GGeoJSONFeatureCollection;
 import org.linkedgeodesy.org.gazetteerjson.json.GGeoJSONFeatureObject;
 import org.linkedgeodesy.org.gazetteerjson.json.GGeoJSONSingleFeature;
@@ -79,7 +81,7 @@ public class IDAIGazetteer {
                 response.append(inputLine);
             }
             in.close();
-            // ste G-GeoJSON
+            // create G-GeoJSON
             JSONObject resultObject = (JSONObject) new JSONParser().parse(response.toString());
             JSONArray result = (JSONArray) resultObject.get("result");
             for (Object item : result) {
@@ -134,12 +136,12 @@ public class IDAIGazetteer {
                 response.append(inputLine);
             }
             in.close();
-            System.out.println(response.toString());
-            // ste G-GeoJSON
+            // create G-GeoJSON
             JSONObject resultObject = (JSONObject) new JSONParser().parse(response.toString());
             JSONArray result = (JSONArray) resultObject.get("result");
             for (Object item : result) {
                 JSONObject tmp = (JSONObject) item;
+                GGeoJSONFeatureObject feature = new GGeoJSONFeatureObject();
                 // get names
                 JSONArray dainames = (JSONArray) tmp.get("names");
                 NamesJSONObject names = new NamesJSONObject();
@@ -155,7 +157,6 @@ public class IDAIGazetteer {
                 }
                 // get geometry
                 JSONObject prefLocation = (JSONObject) tmp.get("prefLocation");
-                GGeoJSONFeatureObject feature = new GGeoJSONFeatureObject();
                 if (prefLocation != null) {
                     JSONArray coordinatesPrefLocation = (JSONArray) prefLocation.get("coordinates");
                     JSONObject geometryObject = new JSONObject();
@@ -165,8 +166,16 @@ public class IDAIGazetteer {
                     feature.setProperties((String) tmp.get("@id"), (String) tmp.get("gazId"), "dai", names);
                     json.setFeature(feature);
                 }
+                // get prefName
+                JSONObject prefName = (JSONObject) tmp.get("prefName");
+                double levenshtein = StringSimilarity.Levenshtein(searchString, (String) prefName.get("title"));
+                double normalizedlevenshtein = StringSimilarity.NormalizedLevenshtein(searchString, (String) prefName.get("title"));
+                double dameraulevenshtein = StringSimilarity.Damerau(searchString, (String) prefName.get("title"));
+                double jarowinkler = StringSimilarity.JaroWinkler(searchString, (String) prefName.get("title"));
+                feature.setPropertiesStringSimilarity(Functions.round(levenshtein, 2), Functions.round(normalizedlevenshtein, 2), Functions.round(dameraulevenshtein, 2), Functions.round(jarowinkler, 2), searchString, (String) prefName.get("title"));
+                // set metadata
+                json.setMetadata("dai", null, null, null, null, null, null, null, null, searchString);
             }
-            json.setMetadata("dai", null, null, null, null, null, null, null, null, searchString);
         }
         return json;
     }
