@@ -138,6 +138,12 @@
 			<artifactId>jsonld-java-jena</artifactId>
 			<version>0.4.1</version>
 		</dependency>
+		<!-- String Similarity -->
+		<dependency>
+			<groupId>info.debatty</groupId>
+			<artifactId>java-string-similarity</artifactId>
+			<version>RELEASE</version>
+		</dependency>
 	</dependencies>
 	
 	<reporting>
