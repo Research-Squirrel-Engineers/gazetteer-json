@@ -18,7 +18,7 @@ import org.linkedgeodesy.org.gazetteerjson.json.GGeoJSONSingleFeature;
 import org.linkedgeodesy.org.gazetteerjson.json.NamesJSONObject;
 
 /**
- * JSONObject to store names information
+ * functions to query the iDAI gazetteer
  *
  * @author Florian Thiery
  */
