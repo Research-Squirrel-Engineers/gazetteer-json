@@ -59,7 +59,8 @@ public class IDAIGazetteer {
         return json;
     }
 
-    public static GGeoJSONFeatureCollection getPlaceByBBox(String upperleftLat, String upperleftLon, String upperrightLat, String upperrightLon, String lowerrightLat, String lowerrightLon, String lowerleftLat, String lowerleftLon) throws IOException, ParseException {
+    public static GGeoJSONFeatureCollection getPlaceByBBox(String upperleftLat, String upperleftLon, String upperrightLat, String upperrightLon,
+                                                           String lowerrightLat, String lowerrightLon, String lowerleftLat, String lowerleftLon) throws IOException, ParseException {
         GGeoJSONFeatureCollection json = new GGeoJSONFeatureCollection();
         String searchurl = "https://gazetteer.dainst.org/search.json";
         String urlParameters = "?";
