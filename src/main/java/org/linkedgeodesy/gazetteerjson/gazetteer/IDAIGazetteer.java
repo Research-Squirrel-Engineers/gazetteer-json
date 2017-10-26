@@ -105,12 +105,68 @@ public class IDAIGazetteer {
                     JSONObject geometryObject = new JSONObject();
                     geometryObject.put("type", "Point");
                     geometryObject.put("coordinates", coordinatesPrefLocation);
-                    feature.setGeometry(geometryObject); 
+                    feature.setGeometry(geometryObject);
+                    feature.setProperties((String) tmp.get("@id"), (String) tmp.get("gazId"), "dai", names);
+                    json.setFeature(feature);
                 }
-                feature.setProperties((String) tmp.get("@id"), (String) tmp.get("gazId"), "dai", names);
-                json.setFeature(feature);
             }
-            json.setMetadata("dai", upperleftLat, upperleftLon, upperrightLat, upperrightLon, lowerrightLat, lowerrightLon, lowerleftLat, lowerleftLon);
+            json.setMetadata("dai", upperleftLat, upperleftLon, upperrightLat, upperrightLon, lowerrightLat, lowerrightLon, lowerleftLat, lowerleftLon, null);
+        }
+        return json;
+    }
+
+    public static GGeoJSONFeatureCollection getPlaceByString(String searchString) throws IOException, ParseException {
+        GGeoJSONFeatureCollection json = new GGeoJSONFeatureCollection();
+        String searchurl = "https://gazetteer.dainst.org/search.json";
+        String urlParameters = "?";
+        urlParameters += "q=" + searchString + "&fq=types:populated-place";
+        searchurl += urlParameters;
+        URL url = new URL(searchurl);
+        HttpURLConnection con = (HttpURLConnection) url.openConnection();
+        con.setRequestMethod("GET");
+        int responseCode = con.getResponseCode();
+        System.out.println("DAI Gazetteer Response Code : " + responseCode + " - " + url);
+        if (responseCode < 400) {
+            BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream(), "UTF-8"));
+            String inputLine;
+            StringBuffer response = new StringBuffer();
+            while ((inputLine = in.readLine()) != null) {
+                response.append(inputLine);
+            }
+            in.close();
+            System.out.println(response.toString());
+            // ste G-GeoJSON
+            JSONObject resultObject = (JSONObject) new JSONParser().parse(response.toString());
+            JSONArray result = (JSONArray) resultObject.get("result");
+            for (Object item : result) {
+                JSONObject tmp = (JSONObject) item;
+                // get names
+                JSONArray dainames = (JSONArray) tmp.get("names");
+                NamesJSONObject names = new NamesJSONObject();
+                if (dainames != null) {
+                    for (Object item2 : dainames) {
+                        JSONObject tmp2 = (JSONObject) item2;
+                        if (tmp2.get("language") != null) {
+                            HashSet hs = new HashSet();
+                            hs.add(tmp2.get("title"));
+                            names.setName((String) tmp2.get("language"), hs);
+                        }
+                    }
+                }
+                // get geometry
+                JSONObject prefLocation = (JSONObject) tmp.get("prefLocation");
+                GGeoJSONFeatureObject feature = new GGeoJSONFeatureObject();
+                if (prefLocation != null) {
+                    JSONArray coordinatesPrefLocation = (JSONArray) prefLocation.get("coordinates");
+                    JSONObject geometryObject = new JSONObject();
+                    geometryObject.put("type", "Point");
+                    geometryObject.put("coordinates", coordinatesPrefLocation);
+                    feature.setGeometry(geometryObject);
+                    feature.setProperties((String) tmp.get("@id"), (String) tmp.get("gazId"), "dai", names);
+                    json.setFeature(feature);
+                }
+            }
+            json.setMetadata("dai", null, null, null, null, null, null, null, null, searchString);
         }
         return json;
     }
