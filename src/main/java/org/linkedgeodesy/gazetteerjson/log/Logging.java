@@ -27,12 +27,8 @@ public class Logging {
             }
         }
         // get error code
-        String code = "";
-        String userMessage = "";
-        if (exception.toString().contains("NullPointerException")) {
-            code = "1";
-            userMessage = "some value is not available";
-        }
+        String code = "unknown";
+        String userMessage = "n/a";
         // output
         jsonobj_error.put("errors", jsonobj_error_data);
         jsonobj_error_data.put("internalMessage", exception.toString());

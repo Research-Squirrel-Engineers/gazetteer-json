@@ -5,7 +5,6 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.HashSet;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -15,7 +14,7 @@ import org.linkedgeodesy.org.gazetteerjson.json.CGeoJSONFeatureObject;
 import org.linkedgeodesy.org.gazetteerjson.json.GGeoJSONSingleFeature;
 
 /**
- * functions to query the ChroNontology gazetteer
+ * functions to query the ChronOntology gazetteer
  *
  * @author Florian Thiery
  */
