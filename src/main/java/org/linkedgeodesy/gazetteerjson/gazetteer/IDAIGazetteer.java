@@ -10,7 +10,7 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
-import org.linkedgeodesy.org.gazetteerjson.json.GGeoJSONFeatureObject;
+import org.linkedgeodesy.org.gazetteerjson.json.GGeoJSONSingleFeature;
 import org.linkedgeodesy.org.gazetteerjson.json.NamesJSONObject;
 
 /**
@@ -20,8 +20,8 @@ import org.linkedgeodesy.org.gazetteerjson.json.NamesJSONObject;
  */
 public class IDAIGazetteer {
 
-    public static GGeoJSONFeatureObject getResource(String id) throws IOException, ParseException {
-        GGeoJSONFeatureObject json = new GGeoJSONFeatureObject();
+    public static GGeoJSONSingleFeature getResource(String id) throws IOException, ParseException {
+        GGeoJSONSingleFeature json = new GGeoJSONSingleFeature();
         String uri = "http://gazetteer.dainst.org/place/" + id;
         URL url = new URL(uri);
         HttpURLConnection con = (HttpURLConnection) url.openConnection();

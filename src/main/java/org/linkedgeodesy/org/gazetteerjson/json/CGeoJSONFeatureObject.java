@@ -7,7 +7,7 @@ import org.json.simple.JSONObject;
  *
  * @author Florian Thiery
  */
-public class CGeoJSONFeatureObject extends GGeoJSONFeatureObject {
+public class CGeoJSONFeatureObject extends GGeoJSONSingleFeature {
 
     public CGeoJSONFeatureObject() {
         super();
