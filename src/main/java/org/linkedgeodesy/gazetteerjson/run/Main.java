@@ -33,7 +33,7 @@ public class Main {
             o.add("# IDAIGazetteer.getPlaceByString" + "\r\n");
             o.add(IDAIGazetteer.getPlaceByString("Mainz").toJSONString() + "\r\n");
             o.add("# ChronOntology.getPlacesById" + "\r\n");
-            o.add(ChronOntology.getPlacesById("Ehf6FBZm0Huc") + "\r\n");
+            o.add(ChronOntology.getPlacesById("3vsiBEzefcc5") + "\r\n"); //EfFq8qCFODK8
             FileOutput.writeFile(o);
         } catch (Exception e) {
             System.out.println(Logging.getMessageJSON(e, "org.linkedgeodesy.gazetteerjson.run.Main").toJSONString());
