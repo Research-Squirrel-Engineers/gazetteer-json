@@ -29,9 +29,9 @@ public class Main {
             o.add("# IDAIGazetteer.getPlaceById" + "\r\n");
             o.add(IDAIGazetteer.getPlaceById("2181124").toJSONString() + "\r\n");
             o.add("# IDAIGazetteer.getPlaceByBBox" + "\r\n");
-            o.add(IDAIGazetteer.getPlaceByBBox("50.082665", "8.161050", "49.903887", "8.161050", "49.903887", "8.371850", "50.082665", "8.371850").toJSONString() + "\r\n");
+            o.add(IDAIGazetteer.getPlacesByBBox("50.082665", "8.161050", "49.903887", "8.161050", "49.903887", "8.371850", "50.082665", "8.371850").toJSONString() + "\r\n");
             o.add("# IDAIGazetteer.getPlaceByString" + "\r\n");
-            o.add(IDAIGazetteer.getPlaceByString("Mainz").toJSONString() + "\r\n");
+            o.add(IDAIGazetteer.getPlacesByString("Mainz").toJSONString() + "\r\n");
             o.add("# ChronOntology.getPlacesById" + "\r\n");
             o.add(ChronOntology.getPlacesById("3vsiBEzefcc5") + "\r\n"); //EfFq8qCFODK8
             FileOutput.writeFile(o);
