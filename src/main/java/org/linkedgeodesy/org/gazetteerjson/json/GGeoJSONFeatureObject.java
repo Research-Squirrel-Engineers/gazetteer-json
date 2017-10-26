@@ -1,5 +1,6 @@
 package org.linkedgeodesy.org.gazetteerjson.json;
 
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.linkedgeodesy.gazetteerjson.utils.Functions;
 
@@ -31,14 +32,16 @@ public class GGeoJSONFeatureObject extends GGeoJSONSingleFeature {
         properties.put("names", names);
         super.put("properties", properties);
     }
-    
+
     /**
      * set GeoJSON single feature properties
      *
-     * @param url
-     * @param gazetteerid
-     * @param gazetteertype
-     * @param names
+     * @param levenshtein
+     * @param normalizedlevenshtein
+     * @param dameraulevenshtein
+     * @param jarowinkler
+     * @param searchString
+     * @param gazetteerString
      */
     public void setPropertiesStringSimilarity(Double levenshtein, Double normalizedlevenshtein, Double dameraulevenshtein, Double jarowinkler, String searchString, String gazetteerString) {
         JSONObject properties = (JSONObject) super.get("properties");
@@ -49,6 +52,22 @@ public class GGeoJSONFeatureObject extends GGeoJSONSingleFeature {
         similarity.put("normalizedlevenshtein", normalizedlevenshtein);
         similarity.put("dameraulevenshtein", dameraulevenshtein);
         similarity.put("jarowinkler", jarowinkler);
+        properties.put("similarity", similarity);
+        super.put("properties", properties);
+    }
+    
+    public void setPropertiesDistanceSimilarity(double lat1, double lon1, double lat2, double lon2) {
+        JSONObject properties = (JSONObject) super.get("properties");
+        JSONObject similarity = new JSONObject();
+        JSONArray bboxcenter = new JSONArray();
+        JSONArray point = new JSONArray();
+        bboxcenter.add(lon1);
+        bboxcenter.add(lat1);
+        point.add(lon2);
+        point.add(lat2);
+        similarity.put("bboxcenter", bboxcenter);
+        similarity.put("point", point);
+        similarity.put("distance", Functions.getKilometers(lat1, lon1, lat2, lon2));
         properties.put("similarity", similarity);
         super.put("properties", properties);
     }

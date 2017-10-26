@@ -105,15 +105,22 @@ public class IDAIGazetteer {
                 GGeoJSONFeatureObject feature = new GGeoJSONFeatureObject();
                 if (prefLocation != null) {
                     JSONArray coordinatesPrefLocation = (JSONArray) prefLocation.get("coordinates");
+                    Double lon = (Double) coordinatesPrefLocation.get(0);
+                    Double lat = (Double) coordinatesPrefLocation.get(1);
                     JSONObject geometryObject = new JSONObject();
                     geometryObject.put("type", "Point");
                     geometryObject.put("coordinates", coordinatesPrefLocation);
                     feature.setGeometry(geometryObject);
                     feature.setProperties((String) tmp.get("@id"), (String) tmp.get("gazId"), "dai", names);
                     json.setFeature(feature);
+                    // get distance
+                    JSONArray bbox = Functions.bboxCenter(Double.parseDouble(lowerrightLon), Double.parseDouble(upperleftLon), Double.parseDouble(upperleftLat), Double.parseDouble(upperrightLat));
+                    Double bboxlon = (Double) bbox.get(1);
+                    Double bboxlat = (Double) bbox.get(0);
+                    feature.setPropertiesDistanceSimilarity(bboxlon, bboxlat, lat, lon);
                 }
+                json.setMetadata("dai", upperleftLat, upperleftLon, upperrightLat, upperrightLon, lowerrightLat, lowerrightLon, lowerleftLat, lowerleftLon, null);
             }
-            json.setMetadata("dai", upperleftLat, upperleftLon, upperrightLat, upperrightLon, lowerrightLat, lowerrightLon, lowerleftLat, lowerleftLon, null);
         }
         return json;
     }
