@@ -10,6 +10,7 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
+import org.linkedgeodesy.org.gazetteerjson.json.GGeoJSONFeatureCollection;
 import org.linkedgeodesy.org.gazetteerjson.json.GGeoJSONSingleFeature;
 import org.linkedgeodesy.org.gazetteerjson.json.NamesJSONObject;
 
@@ -20,7 +21,7 @@ import org.linkedgeodesy.org.gazetteerjson.json.NamesJSONObject;
  */
 public class IDAIGazetteer {
 
-    public static GGeoJSONSingleFeature getResource(String id) throws IOException, ParseException {
+    public static GGeoJSONSingleFeature getPlaceById(String id) throws IOException, ParseException {
         GGeoJSONSingleFeature json = new GGeoJSONSingleFeature();
         String uri = "http://gazetteer.dainst.org/place/" + id;
         URL url = new URL(uri);
@@ -69,6 +70,11 @@ public class IDAIGazetteer {
             json.setGeometry((JSONObject) jsonObject.get("geometry"));
             json.setProperties(uri, id, "dai", names);
         }
+        return json;
+    }
+    
+    public static GGeoJSONFeatureCollection getPlaceByBBox(String id) throws IOException, ParseException {
+        GGeoJSONFeatureCollection json = new GGeoJSONFeatureCollection();
         return json;
     }
 

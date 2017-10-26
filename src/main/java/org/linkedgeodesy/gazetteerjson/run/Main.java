@@ -25,7 +25,7 @@ public class Main {
         try {
             // get POM Info
             //o.add(POM_gazetteerjson.getInfo().toJSONString());
-            o.add(IDAIGazetteer.getResource("2181124").toJSONString());
+            o.add(IDAIGazetteer.getPlaceById("2181124").toJSONString());
             FileOutput.writeFile(o);
         } catch (Exception e) {
             System.out.println(Logging.getMessageJSON(e, "org.linkedgeodesy.gazetteerjson.run.Main").toJSONString());
