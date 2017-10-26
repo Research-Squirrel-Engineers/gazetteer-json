@@ -23,9 +23,13 @@ public class Main {
     public static void main(String[] args) throws IOException, SQLException {
         List<String> o = new ArrayList();
         try {
-            //o.add(POM_gazetteerjson.getInfo().toJSONString());
+            o.add("# POM_gazetteerjson.getInfo" + "\r\n");
+            o.add(POM_gazetteerjson.getInfo().toJSONString() + "\r\n");
+            o.add("# IDAIGazetteer.getPlaceById" + "\r\n");
             o.add(IDAIGazetteer.getPlaceById("2181124").toJSONString() + "\r\n");
+            o.add("# IDAIGazetteer.getPlaceByBBox" + "\r\n");
             o.add(IDAIGazetteer.getPlaceByBBox("50.082665", "8.161050", "49.903887", "8.161050", "49.903887", "8.371850", "50.082665", "8.371850").toJSONString() + "\r\n");
+            o.add("# IDAIGazetteer.getPlaceByString" + "\r\n");
             o.add(IDAIGazetteer.getPlaceByString("Mainz").toJSONString() + "\r\n");
             FileOutput.writeFile(o);
         } catch (Exception e) {
