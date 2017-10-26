@@ -46,14 +46,20 @@ public class GGeoJSONFeatureCollection extends JSONObject {
      * @param when
      * @param names
      */
-    public void setMetadata(String url, String periodid, JSONObject chronontology, JSONArray when, JSONObject names) {
+    public void setMetadata(String type, String upperleftLat, String upperleftLon, String upperrightLat, String upperrightLon,
+                            String lowerrightLat, String lowerrightLon, String lowerleftLat, String lowerleftLon) {
         JSONObject metadata = new JSONObject();
         super.remove("metadata");
-        /*metadata.put("@id", url);
-        metadata.put("periodid", periodid);
-        metadata.put("chronontology", chronontology);
-        metadata.put("when", when);
-        metadata.put("names", names);*/
+        metadata.put("gazetteertype", type);
+        metadata.put("upperleftLat", upperleftLat);
+        metadata.put("upperleftLon", upperleftLon);
+        metadata.put("upperrightLat", upperrightLat);
+        metadata.put("upperrightLon", upperrightLon);
+        metadata.put("lowerrightLat", lowerrightLat);
+        metadata.put("lowerrightLon", lowerleftLat);
+        metadata.put("lowerrightLon", lowerrightLon);
+        metadata.put("lowerleftLat", lowerleftLat);
+        metadata.put("lowerleftLon", lowerleftLon);
         super.put("metadata", metadata);
     }
 
