@@ -55,7 +55,7 @@ public class GGeoJSONFeatureObject extends GGeoJSONSingleFeature {
         properties.put("similarity", similarity);
         super.put("properties", properties);
     }
-    
+
     public void setPropertiesDistanceSimilarity(double lat1, double lon1, double lat2, double lon2) {
         JSONObject properties = (JSONObject) super.get("properties");
         JSONObject similarity = new JSONObject();
@@ -67,7 +67,7 @@ public class GGeoJSONFeatureObject extends GGeoJSONSingleFeature {
         point.add(lat2);
         similarity.put("bboxcenter", bboxcenter);
         similarity.put("point", point);
-        similarity.put("distance", Functions.getKilometers(lat1, lon1, lat2, lon2));
+        similarity.put("distance", Functions.round(Functions.getKilometers(lat1, lon1, lat2, lon2), 2));
         properties.put("similarity", similarity);
         super.put("properties", properties);
     }
