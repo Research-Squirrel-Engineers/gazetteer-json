@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import org.linkedgeodesy.gazetteerjson.gazetteer.ChronOntology;
 import org.linkedgeodesy.gazetteerjson.gazetteer.IDAIGazetteer;
 
 /**
@@ -31,6 +32,8 @@ public class Main {
             o.add(IDAIGazetteer.getPlaceByBBox("50.082665", "8.161050", "49.903887", "8.161050", "49.903887", "8.371850", "50.082665", "8.371850").toJSONString() + "\r\n");
             o.add("# IDAIGazetteer.getPlaceByString" + "\r\n");
             o.add(IDAIGazetteer.getPlaceByString("Mainz").toJSONString() + "\r\n");
+            o.add("# ChronOntology.getPlacesById" + "\r\n");
+            o.add(ChronOntology.getPlacesById("Ehf6FBZm0Huc") + "\r\n");
             FileOutput.writeFile(o);
         } catch (Exception e) {
             System.out.println(Logging.getMessageJSON(e, "org.linkedgeodesy.gazetteerjson.run.Main").toJSONString());

@@ -31,5 +31,25 @@ public class CGeoJSONFeatureObject extends GGeoJSONSingleFeature {
         properties.put("gazetteerrelation", gazetteerrelation);
         super.put("properties", properties);
     }
+    
+    /**
+     * set GeoJSON single feature properties
+     * @param properties 
+     */
+    public void setProperties(JSONObject properties) {
+        super.remove("properties");
+        super.put("properties", properties);
+    }
+    
+    /**
+     * set GeoJSON single feature properties 
+     * @param key
+     * @param value 
+     */
+    public void setProperty(String key, String value) {
+        JSONObject obj = super.getProperties();
+        obj.put(key, value);
+        super.put("properties", obj);
+    }
 
 }

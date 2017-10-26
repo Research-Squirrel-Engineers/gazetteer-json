@@ -46,7 +46,7 @@ public class CGeoJSONFeatureCollection extends JSONObject {
      * @param when
      * @param names
      */
-    public void setMetadata(String url, String periodid, JSONObject chronontology, JSONArray when, JSONObject names) {
+    public void setMetadata(String url, String periodid, JSONObject chronontology, JSONArray when, JSONObject names, JSONArray coverage) {
         JSONObject metadata = new JSONObject();
         super.remove("metadata");
         metadata.put("@id", url);
@@ -54,6 +54,7 @@ public class CGeoJSONFeatureCollection extends JSONObject {
         metadata.put("chronontology", chronontology);
         metadata.put("when", when);
         metadata.put("names", names);
+        metadata.put("coverage", coverage);
         super.put("metadata", metadata);
     }
 
