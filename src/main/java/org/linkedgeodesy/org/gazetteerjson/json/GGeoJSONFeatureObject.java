@@ -13,9 +13,9 @@ import org.json.simple.parser.JSONParser;
  *
  * @author Florian Thiery
  */
-public class GGeoJSONObject extends JSONObject {
+public class GGeoJSONFeatureObject extends JSONObject {
 
-    public GGeoJSONObject() {
+    public GGeoJSONFeatureObject() {
         super();
         super.put("type", "Feature");
         super.put("geometry", new JSONObject());
