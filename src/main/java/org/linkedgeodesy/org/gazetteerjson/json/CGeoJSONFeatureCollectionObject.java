@@ -8,9 +8,9 @@ import org.json.simple.JSONObject;
  *
  * @author Florian Thiery
  */
-public class CGeoJSONObject extends JSONObject {
+public class CGeoJSONFeatureCollectionObject extends JSONObject {
 
-    public CGeoJSONObject() {
+    public CGeoJSONFeatureCollectionObject() {
         super();
         super.put("type", "FeatureCollection");
         super.put("features", new JSONArray());
