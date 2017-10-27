@@ -4,8 +4,6 @@ A Library for Gazetteer JSON access.
 
 [![build](https://api.travis-ci.org/linkedgeodesy/gazetteer-json.svg?branch=master)](https://travis-ci.org/linkedgeodesy/gazetteer-json) [![version](https://img.shields.io/badge/version-1.0--SNAPSHOT-green.svg)](#)  [![java](https://img.shields.io/badge/jdk-1.8-red.svg)](#)  [![maven](https://img.shields.io/badge/maven-3.5.0-orange.svg)](#) [![output](https://img.shields.io/badge/output-jar-red.svg)](#)  [![docs](https://img.shields.io/badge/apidoc-v0.3-blue.svg)](https://linkedgeodesy.github.io/gazetteer-json/) [![tests](https://img.shields.io/badge/tests-report-yellowgreen.svg)](https://linkedgeodesy.github.io/gazetteer-json/surefire-report.html)   [![license](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/linkedgeodesy/gazetteer-json/blob/master/LICENSE)
 
-https://linkedgeodesy.github.io/gazetteer-json/surefire-report.html
-
 ## Prerequisites
 
 The code is developed using and tested with:
