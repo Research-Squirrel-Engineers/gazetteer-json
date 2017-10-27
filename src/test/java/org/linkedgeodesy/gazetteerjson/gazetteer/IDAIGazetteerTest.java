@@ -88,5 +88,34 @@ public class IDAIGazetteerTest {
         assertNotSame(names, new JSONObject());
         assertNotSame(similarity, new JSONObject());
     }
+    
+    /**
+     * Test of getPlacesByString method, of class IDAIGazetteer.
+     */
+    @Test
+    public void testIDAIGazetteerGetPlacesByStringValidation() throws Exception {
+        System.out.println("TEST: testIDAIGazetteerGetPlacesByStringValidation");
+        GGeoJSONFeatureCollection fc = IDAIGazetteer.getPlacesByString("Mainz");
+        String type = (String) fc.get("type");
+        JSONArray featuresArray = (JSONArray) fc.get("features");
+        JSONObject metadataObj = (JSONObject) fc.get("metadata");
+        JSONObject feature0 = (JSONObject) featuresArray.get(0);
+        JSONObject feature0prop = (JSONObject) feature0.get("properties");
+        String id = (String) feature0prop.get("@id");
+        String gazetteerid = (String) feature0prop.get("gazetteerid");
+        String gazetteertype = (String) feature0prop.get("gazetteertype");
+        JSONObject names = (JSONObject) feature0prop.get("names");
+        JSONObject similarity = (JSONObject) feature0prop.get("similarity");
+        // tests
+        assertEquals(type,"FeatureCollection");
+        assertNotSame(featuresArray, new JSONArray());
+        assertNotSame(metadataObj, new JSONObject());
+        assertNotSame(feature0, new JSONObject());
+        assertNotNull(id);
+        assertNotNull(gazetteerid);
+        assertEquals(gazetteertype,"dai");
+        assertNotSame(names, new JSONObject());
+        assertNotSame(similarity, new JSONObject());
+    }
 
 }
