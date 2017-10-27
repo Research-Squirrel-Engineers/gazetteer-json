@@ -39,6 +39,8 @@ public class Main {
             o.add(GeoNames.getPlaceById("2874225").toJSONString() + "\r\n");
             o.add("# GeoNames.getPlacesByBBox" + "\r\n");
             o.add(GeoNames.getPlacesByBBox("50.082665", "8.161050", "49.903887", "8.161050", "49.903887", "8.371850", "50.082665", "8.371850").toJSONString() + "\r\n");
+            o.add("# GeoNames.getPlacesByString" + "\r\n");
+            o.add(GeoNames.getPlacesByString("Mainz").toJSONString() + "\r\n");
             FileOutput.writeFile(o);
         } catch (Exception e) {
             System.out.println(Logging.getMessageJSON(e, "org.linkedgeodesy.gazetteerjson.run.Main").toJSONString());

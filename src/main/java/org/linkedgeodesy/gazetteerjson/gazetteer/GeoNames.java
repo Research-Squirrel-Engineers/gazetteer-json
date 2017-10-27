@@ -20,6 +20,7 @@ import org.jdom.JDOMException;
 import org.jdom.input.SAXBuilder;
 import org.json.simple.parser.JSONParser;
 import org.linkedgeodesy.gazetteerjson.utils.Functions;
+import org.linkedgeodesy.gazetteerjson.utils.StringSimilarity;
 import org.linkedgeodesy.org.gazetteerjson.json.GGeoJSONFeatureCollection;
 import org.linkedgeodesy.org.gazetteerjson.json.GGeoJSONFeatureObject;
 
@@ -38,7 +39,7 @@ public class GeoNames {
         con.setRequestMethod("GET");
         con.setRequestProperty("Accept", "application/xml;charset=UTF-8");
         int responseCode = con.getResponseCode();
-        System.out.println("GeoNames Response Code : " + responseCode + " - " + url);
+        System.out.println("GeoNames.getPlaceById() - GeoNames Response Code : " + responseCode + " - " + url);
         if (responseCode < 400) {
             BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream(), "UTF-8"));
             String inputLine;
@@ -102,7 +103,7 @@ public class GeoNames {
         con.setRequestMethod("GET");
         con.setRequestProperty("Accept", "application/json;charset=UTF-8");
         int responseCode = con.getResponseCode();
-        System.out.println("GeoNames Response Code : " + responseCode + " - " + url);
+        System.out.println("GeoNames.getPlacesByBBox() - GeoNames Response Code : " + responseCode + " - " + url);
         if (responseCode < 400) {
             BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream(), "UTF-8"));
             String inputLine;
@@ -158,6 +159,82 @@ public class GeoNames {
                 Double bboxlat = (Double) bbox.get(0);
                 feature.setPropertiesDistanceSimilarity(bboxlon, bboxlat, lat, lon);
                 json.setMetadata("geonames", upperleftLat, upperleftLon, upperrightLat, upperrightLon, lowerrightLat, lowerrightLon, lowerleftLat, lowerleftLon, null);
+            }
+        }
+        return json;
+    }
+
+    public static GGeoJSONFeatureCollection getPlacesByString(String searchString) throws IOException, ParseException {
+        GGeoJSONFeatureCollection json = new GGeoJSONFeatureCollection();
+        String url = "http://api.geonames.org/searchJSON";
+        String urlParameters = "?username=chron.ontology";
+        urlParameters += "&featureClass=A&featureClass=P";
+        urlParameters += "&style=full";
+        urlParameters += "&name=" + searchString;
+        URL obj = new URL(url + urlParameters);
+        HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+        con.setRequestMethod("GET");
+        con.setRequestProperty("Accept", "application/json;charset=UTF-8");
+        int responseCode = con.getResponseCode();
+        System.out.println("GeoNames.getPlacesByString() - GeoNames Response Code : " + responseCode + " - " + url);
+
+        if (responseCode < 400) {
+            BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream(), "UTF-8"));
+            String inputLine;
+            StringBuffer response = new StringBuffer();
+            while ((inputLine = in.readLine()) != null) {
+                response.append(inputLine);
+            }
+            in.close();
+            JSONObject resultObject = (JSONObject) new JSONParser().parse(response.toString());
+            JSONArray geonames = (JSONArray) resultObject.get("geonames");
+            for (Object item : geonames) {
+                JSONObject tmp = (JSONObject) item;
+                // get names
+                String prefName = (String) tmp.get("name");
+                JSONArray alternateNames = (JSONArray) tmp.get("alternateNames");
+                NamesJSONObject names = new NamesJSONObject();
+                if (alternateNames != null) {
+                    for (Object item2 : alternateNames) {
+                        JSONObject tmp2 = (JSONObject) item2;
+                        if (tmp2.get("lang") != null) {
+                            HashSet hs = new HashSet();
+                            hs.add(tmp2.get("name"));
+                            if (!tmp2.get("lang").equals("link")) {
+                                names.setName((String) tmp2.get("lang"), hs);
+                            }
+                        }
+                    }
+                }
+                // add prefName to names array
+                if (names.getNamesByLanguage("en") != null) {
+                    names.addName("en", prefName);
+                } else {
+                    HashSet hs = new HashSet();
+                    hs.add(prefName);
+                    names.setName((String) "en", hs);
+                }
+                // get geometry
+                Double lon = Double.parseDouble((String) tmp.get("lng"));
+                Double lat = Double.parseDouble((String) tmp.get("lat"));
+                GGeoJSONFeatureObject feature = new GGeoJSONFeatureObject();
+                JSONArray point = new JSONArray();
+                point.add(lon);
+                point.add(lat);
+                JSONObject geometry = new JSONObject();
+                geometry.put("type", "Point");
+                geometry.put("coordinates", point);
+                feature.setGeometry(geometry);
+                feature.setProperties("http://sws.geonames.org/" + Long.toString((long) tmp.get("geonameId")), Long.toString((long) tmp.get("geonameId")), "geonames", names);
+                json.setFeature(feature);
+                // get prefName
+                double levenshtein = StringSimilarity.Levenshtein(searchString, prefName);
+                double normalizedlevenshtein = StringSimilarity.NormalizedLevenshtein(searchString, prefName);
+                double dameraulevenshtein = StringSimilarity.Damerau(searchString, prefName);
+                double jarowinkler = StringSimilarity.JaroWinkler(searchString, prefName);
+                feature.setPropertiesStringSimilarity(levenshtein, normalizedlevenshtein, dameraulevenshtein, jarowinkler, searchString, prefName);
+                // set metadata
+                json.setMetadata("geonames", null, null, null, null, null, null, null, null, searchString);
             }
         }
         return json;
