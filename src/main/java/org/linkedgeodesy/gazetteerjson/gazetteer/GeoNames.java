@@ -177,7 +177,6 @@ public class GeoNames {
         con.setRequestProperty("Accept", "application/json;charset=UTF-8");
         int responseCode = con.getResponseCode();
         System.out.println("GeoNames.getPlacesByString() - GeoNames Response Code : " + responseCode + " - " + url);
-
         if (responseCode < 400) {
             BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream(), "UTF-8"));
             String inputLine;
