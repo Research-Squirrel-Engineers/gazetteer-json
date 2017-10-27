@@ -39,8 +39,8 @@ public class ChronOntologyTest {
      * Test of getPlacesById method, of class ChronOntology.
      */
     @Test
-    public void testChronOntologyPlaceValid() throws Exception {
-        System.out.println("TEST: testChronOntologyPlaceValid");
+    public void testIDAIGazetteerGetPlaceByIdValidation() throws Exception {
+        System.out.println("TEST: testIDAIGazetteerGetPlaceByIdValidation");
         CGeoJSONFeatureCollection fc = ChronOntology.getPlacesById("EfFq8qCFODK8");
         JSONObject metadataObj = (JSONObject) fc.get("metadata");
         String id = (String) metadataObj.get("@id");
