@@ -32,7 +32,7 @@ public class IDAIGazetteer {
         con.setRequestProperty("Accept", "application/vnd.geo+json");
         con.setRequestMethod("GET");
         int responseCode = con.getResponseCode();
-        System.out.println("IDAIGazetteer.getPlaceById() - DAI Gazetteer Response Code : " + responseCode + " - " + url);
+        System.out.println("IDAIGazetteer.getPlaceById() - " + responseCode + " - " + url);
         if (responseCode < 400) {
             BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream(), "UTF-8"));
             String inputLine;
@@ -73,7 +73,7 @@ public class IDAIGazetteer {
         HttpURLConnection con = (HttpURLConnection) url.openConnection();
         con.setRequestMethod("GET");
         int responseCode = con.getResponseCode();
-        System.out.println("IDAIGazetteer.getPlacesByBBox() - DAI Gazetteer Response Code : " + responseCode + " - " + url);
+        System.out.println("IDAIGazetteer.getPlacesByBBox() - " + responseCode + " - " + url);
         if (responseCode < 400) {
             BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream(), "UTF-8"));
             String inputLine;
@@ -135,7 +135,7 @@ public class IDAIGazetteer {
         HttpURLConnection con = (HttpURLConnection) url.openConnection();
         con.setRequestMethod("GET");
         int responseCode = con.getResponseCode();
-        System.out.println("IDAIGazetteer.getPlacesByString() - DAI Gazetteer Response Code : " + responseCode + " - " + url);
+        System.out.println("IDAIGazetteer.getPlacesByString() - " + responseCode + " - " + url);
         if (responseCode < 400) {
             BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream(), "UTF-8"));
             String inputLine;

@@ -39,7 +39,7 @@ public class GeoNames {
         con.setRequestMethod("GET");
         con.setRequestProperty("Accept", "application/xml;charset=UTF-8");
         int responseCode = con.getResponseCode();
-        System.out.println("GeoNames.getPlaceById() - GeoNames Response Code : " + responseCode + " - " + url);
+        System.out.println("GeoNames.getPlaceById() - " + responseCode + " - " + url);
         if (responseCode < 400) {
             BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream(), "UTF-8"));
             String inputLine;
@@ -103,7 +103,7 @@ public class GeoNames {
         con.setRequestMethod("GET");
         con.setRequestProperty("Accept", "application/json;charset=UTF-8");
         int responseCode = con.getResponseCode();
-        System.out.println("GeoNames.getPlacesByBBox() - GeoNames Response Code : " + responseCode + " - " + url);
+        System.out.println("GeoNames.getPlacesByBBox() - " + responseCode + " - " + url);
         if (responseCode < 400) {
             BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream(), "UTF-8"));
             String inputLine;
@@ -176,7 +176,7 @@ public class GeoNames {
         con.setRequestMethod("GET");
         con.setRequestProperty("Accept", "application/json;charset=UTF-8");
         int responseCode = con.getResponseCode();
-        System.out.println("GeoNames.getPlacesByString() - GeoNames Response Code : " + responseCode + " - " + url);
+        System.out.println("GeoNames.getPlacesByString() - " + responseCode + " - " + url);
         if (responseCode < 400) {
             BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream(), "UTF-8"));
             String inputLine;

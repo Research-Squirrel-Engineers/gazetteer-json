@@ -32,7 +32,7 @@ public class ChronOntology {
         con.setRequestMethod("GET");
         con.setRequestProperty("Accept", "application/json");
         int responseCode = con.getResponseCode();
-        System.out.println("ChronOntology.getPlacesById() - ChronOntology Response Code : " + responseCode + " - " + url);
+        System.out.println("ChronOntology.getPlacesById() - " + responseCode + " - " + url);
         if (con.getResponseCode() < 400) {
             BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream(), "UTF-8"));
             String inputLine;
