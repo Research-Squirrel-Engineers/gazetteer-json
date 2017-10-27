@@ -17,8 +17,9 @@ public class NamesJSONObject extends JSONObject {
 
     /**
      * set multiple names for one language
+     *
      * @param language
-     * @param names 
+     * @param names
      */
     public void setName(String language, HashSet names) {
         JSONArray namesArray = new JSONArray();
@@ -28,11 +29,23 @@ public class NamesJSONObject extends JSONObject {
         }
         super.put(language, namesArray);
     }
-    
+
+    /**
+     * set an addition name to a language
+     *
+     * @param language
+     * @param name
+     */
+    public void addName(String language, String name) {
+        JSONArray tmp = (JSONArray) super.get(language);
+        tmp.add(name);
+    }
+
     /**
      * get array of names by language
+     *
      * @param language
-     * @return 
+     * @return
      */
     public JSONArray getNamesByLanguage(String language) {
         return (JSONArray) super.get(language);
