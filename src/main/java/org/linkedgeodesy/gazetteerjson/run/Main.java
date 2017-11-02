@@ -53,6 +53,8 @@ public class Main {
             o.add(GettyTGN.getPlacesByString("Mainz").toJSONString() + "\r\n");
             o.add("# Pleiades.getPlaceById" + "\r\n");
             o.add(Pleiades.getPlaceById("109169").toJSONString() + "\r\n"); // Mogontiacum
+            o.add("# Pleiades.getPlacesByBBox" + "\r\n");
+            o.add(Pleiades.getPlacesByBBox("50.082665", "8.161050", "49.903887", "8.161050", "49.903887", "8.371850", "50.082665", "8.371850").toJSONString() + "\r\n");
             FileOutput.writeFile(o);
         } catch (Exception e) {
             System.out.println(Logging.getMessageJSON(e, "org.linkedgeodesy.gazetteerjson.run.Main").toJSONString());
