@@ -49,14 +49,12 @@ public class Pleiades {
             String min_lat = String.valueOf((Double) geo_bounds.get("min_lat"));
             String max_lat = String.valueOf((Double) geo_bounds.get("max_lat"));
             // choose if point of bbox
-            boolean pointBool = false;
             if (min_lon.equals(max_lon) && min_lat.equals(max_lat)) {
                 JSONArray point = new JSONArray();
                 point.add((Double) geo_bounds.get("min_lon"));
                 point.add((Double) geo_bounds.get("min_lat"));
                 geometry.put("type", "Point");
                 geometry.put("coordinates", point);
-                pointBool = true;
             } else {
                 JSONArray polygonOut = new JSONArray();
                 JSONArray polygon = new JSONArray();
