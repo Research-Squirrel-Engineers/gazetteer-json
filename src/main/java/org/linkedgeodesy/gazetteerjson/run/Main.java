@@ -10,6 +10,7 @@ import org.linkedgeodesy.gazetteerjson.gazetteer.ChronOntology;
 import org.linkedgeodesy.gazetteerjson.gazetteer.GeoNames;
 import org.linkedgeodesy.gazetteerjson.gazetteer.GettyTGN;
 import org.linkedgeodesy.gazetteerjson.gazetteer.IDAIGazetteer;
+import org.linkedgeodesy.gazetteerjson.gazetteer.Pleiades;
 
 /**
  * main class for running
@@ -50,6 +51,8 @@ public class Main {
             o.add(GettyTGN.getPlacesByBBox("48.866667", "2.333333", "48.866667", "2.333333", "48.866667", "2.333333", "48.866667", "2.333333").toJSONString() + "\r\n");
             o.add("# GettyTGN.getPlacesByString" + "\r\n");
             o.add(GettyTGN.getPlacesByString("Mainz").toJSONString() + "\r\n");
+            o.add("# Pleiades.getPlaceById" + "\r\n");
+            o.add(Pleiades.getPlaceById("109169").toJSONString() + "\r\n"); // Mogontiacum
             FileOutput.writeFile(o);
         } catch (Exception e) {
             System.out.println(Logging.getMessageJSON(e, "org.linkedgeodesy.gazetteerjson.run.Main").toJSONString());
