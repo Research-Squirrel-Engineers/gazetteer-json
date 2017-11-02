@@ -84,6 +84,14 @@ public class GettyTGN {
             geometry.put("coordinates", point);
             // add and get names
             NamesJSONObject names = new NamesJSONObject();
+            // get prefLabel
+            JSONObject prefLabelObj0 = (JSONObject) binding0.get("prefLabel");
+            String prefLabelString0 = (String) prefLabelObj0.get("value");
+            String prefLabelLang0 = (String) prefLabelObj0.get("xml:lang");
+            if (prefLabelLang0 == null) {
+                prefLabelLang0 = "unknown";
+            }
+            names.addPrefName(prefLabelLang0, prefLabelString0);
             for (Object item : bindings) {
                 JSONObject binding = (JSONObject) item;
                 JSONObject prefLabelObj = (JSONObject) binding.get("prefLabel");
@@ -188,6 +196,14 @@ public class GettyTGN {
                 JSONObject val0 = (JSONObject) value.get(0);
                 // add and get names
                 NamesJSONObject names = new NamesJSONObject();
+                // get prefLabel
+                JSONObject prefLabelObj0 = (JSONObject) val0.get("prefLabel");
+                String prefLabelString0 = (String) prefLabelObj0.get("value");
+                String prefLabelLang0 = (String) prefLabelObj0.get("xml:lang");
+                if (prefLabelLang0 == null) {
+                    prefLabelLang0 = "unknown";
+                }
+                names.addPrefName(prefLabelLang0, prefLabelString0);
                 // get prefLabels
                 for (Object item : value) {
                     JSONObject binding = (JSONObject) item;
@@ -247,7 +263,7 @@ public class GettyTGN {
         }
         return json;
     }
-    
+
     public static GGeoJSONFeatureCollection getPlacesByString(String searchString) throws IOException, ParseException {
         GGeoJSONFeatureCollection json = new GGeoJSONFeatureCollection();
         String url = "http://vocab.getty.edu/sparql.json";
@@ -315,24 +331,26 @@ public class GettyTGN {
                 JSONObject val0 = (JSONObject) value.get(0);
                 // add and get names
                 NamesJSONObject names = new NamesJSONObject();
+                // get prefLabel
+                JSONObject prefLabelObj0 = (JSONObject) val0.get("prefLabel");
+                String prefLabelString0 = (String) prefLabelObj0.get("value");
+                String prefLabelLang0 = (String) prefLabelObj0.get("xml:lang");
+                if (prefLabelLang0 == null) {
+                    prefLabelLang0 = "unknown";
+                }
+                names.addPrefName(prefLabelLang0, prefLabelString0);
                 // get prefLabels
-                String prefName = "";
-                int i = 0;
                 for (Object item : value) {
                     JSONObject binding = (JSONObject) item;
                     JSONObject prefLabelObj = (JSONObject) binding.get("prefLabel");
                     String prefLabelString = (String) prefLabelObj.get("value");
                     String prefLabelLang = (String) prefLabelObj.get("xml:lang");
-                    if (i==0) {
-                        prefName = prefLabelString;
-                    }
                     if (prefLabelLang == null) {
                         prefLabelLang = "unknown";
                     }
                     HashSet hs = new HashSet();
                     hs.add(prefLabelString);
                     names.setName(prefLabelLang, hs);
-                    i++;
                 }
                 // get id
                 JSONObject idObj = (JSONObject) val0.get("id");
@@ -351,11 +369,11 @@ public class GettyTGN {
                 feature.setProperties(key, id, "getty", names);
                 json.setFeature(feature);
                 // get prefName
-                double levenshtein = StringSimilarity.Levenshtein(searchString, prefName);
-                double normalizedlevenshtein = StringSimilarity.NormalizedLevenshtein(searchString, prefName);
-                double dameraulevenshtein = StringSimilarity.Damerau(searchString, prefName);
-                double jarowinkler = StringSimilarity.JaroWinkler(searchString, prefName);
-                feature.setPropertiesStringSimilarity(levenshtein, normalizedlevenshtein, dameraulevenshtein, jarowinkler, searchString, prefName);
+                double levenshtein = StringSimilarity.Levenshtein(searchString, prefLabelString0);
+                double normalizedlevenshtein = StringSimilarity.NormalizedLevenshtein(searchString, prefLabelString0);
+                double dameraulevenshtein = StringSimilarity.Damerau(searchString, prefLabelString0);
+                double jarowinkler = StringSimilarity.JaroWinkler(searchString, prefLabelString0);
+                feature.setPropertiesStringSimilarity(levenshtein, normalizedlevenshtein, dameraulevenshtein, jarowinkler, searchString, prefLabelString0);
                 for (Object item : value) {
                     JSONObject val = (JSONObject) item;
                     // get altLabels
