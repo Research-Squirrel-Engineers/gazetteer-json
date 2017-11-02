@@ -50,5 +50,12 @@ public class NamesJSONObject extends JSONObject {
     public JSONArray getNamesByLanguage(String language) {
         return (JSONArray) super.get(language);
     }
+    
+    public void addPrefName(String language, String name) {
+        JSONObject prefName = new JSONObject();
+        prefName.put("name", name);
+        prefName.put("lang", language);
+        super.put("prefName", prefName);
+    }
 
 }
