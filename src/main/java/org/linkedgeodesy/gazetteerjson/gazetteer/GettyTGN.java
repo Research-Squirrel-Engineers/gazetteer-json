@@ -90,7 +90,7 @@ public class GettyTGN {
                 String prefLabelString = (String) prefLabelObj.get("value");
                 String prefLabelLang = (String) prefLabelObj.get("xml:lang");
                 if (prefLabelLang == null) {
-                    prefLabelLang = "en";
+                    prefLabelLang = "unknown";
                 }
                 HashSet hs = new HashSet();
                 hs.add(prefLabelString);
@@ -104,7 +104,7 @@ public class GettyTGN {
                 String altLabelLang = (String) altLabelObj.get("xml:lang");
                 // add altLabel to names array
                 if (altLabelLang == null) {
-                    altLabelLang = "en";
+                    altLabelLang = "unknown";
                 }
                 if (names.getNamesByLanguage(altLabelLang) != null) {
                     names.addName(altLabelLang, altLabelString);
@@ -195,7 +195,7 @@ public class GettyTGN {
                     String prefLabelString = (String) prefLabelObj.get("value");
                     String prefLabelLang = (String) prefLabelObj.get("xml:lang");
                     if (prefLabelLang == null) {
-                        prefLabelLang = "en";
+                        prefLabelLang = "unknown";
                     }
                     HashSet hs = new HashSet();
                     hs.add(prefLabelString);
@@ -231,7 +231,7 @@ public class GettyTGN {
                         String altLabelLang = (String) altLabelObj.get("xml:lang");
                         // add altLabel to names array
                         if (altLabelLang == null) {
-                            altLabelLang = "en";
+                            altLabelLang = "unknown";
                         }
                         if (names.getNamesByLanguage(altLabelLang) != null) {
                             names.addName(altLabelLang, altLabelString);
@@ -327,7 +327,7 @@ public class GettyTGN {
                         prefName = prefLabelString;
                     }
                     if (prefLabelLang == null) {
-                        prefLabelLang = "en";
+                        prefLabelLang = "unknown";
                     }
                     HashSet hs = new HashSet();
                     hs.add(prefLabelString);
@@ -365,7 +365,7 @@ public class GettyTGN {
                         String altLabelLang = (String) altLabelObj.get("xml:lang");
                         // add altLabel to names array
                         if (altLabelLang == null) {
-                            altLabelLang = "en";
+                            altLabelLang = "unknown";
                         }
                         if (names.getNamesByLanguage(altLabelLang) != null) {
                             names.addName(altLabelLang, altLabelString);
