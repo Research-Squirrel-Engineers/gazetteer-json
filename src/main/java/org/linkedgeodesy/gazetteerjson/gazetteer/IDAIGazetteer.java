@@ -50,7 +50,12 @@ public class IDAIGazetteer {
                 if (tmp.get("language") != null) {
                     HashSet hs = new HashSet();
                     hs.add(tmp.get("title"));
-                    names.setName((String) tmp.get("language"), hs);
+                    String lang = (String) tmp.get("language");
+                    names.setName(lang, hs);
+                } else {
+                    HashSet hs = new HashSet();
+                    hs.add(tmp.get("title"));
+                    names.setName("unknown", hs);
                 }
             }
             json.setGeometry((JSONObject) jsonObject.get("geometry"));
@@ -96,7 +101,12 @@ public class IDAIGazetteer {
                         if (tmp2.get("language") != null) {
                             HashSet hs = new HashSet();
                             hs.add(tmp2.get("title"));
-                            names.setName((String) tmp2.get("language"), hs);
+                            String lang = (String) tmp2.get("language");
+                            names.setName(lang, hs);
+                        } else {
+                            HashSet hs = new HashSet();
+                            hs.add(tmp2.get("title"));
+                            names.setName("unknown", hs);
                         }
                     }
                 }
@@ -159,7 +169,12 @@ public class IDAIGazetteer {
                         if (tmp2.get("language") != null) {
                             HashSet hs = new HashSet();
                             hs.add(tmp2.get("title"));
-                            names.setName((String) tmp2.get("language"), hs);
+                            String lang = (String) tmp2.get("language");
+                            names.setName(lang, hs);
+                        } else {
+                            HashSet hs = new HashSet();
+                            hs.add(tmp2.get("title"));
+                            names.setName("unknown", hs);
                         }
                     }
                 }
