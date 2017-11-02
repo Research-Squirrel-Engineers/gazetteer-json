@@ -76,12 +76,12 @@ public class GeoNames {
                 }
             }
             // add prefName to names array
-            if (names.getNamesByLanguage("en") != null) {
-                names.addName("en", prefName);
+            if (names.getNamesByLanguage("unknown") != null) {
+                names.addName("unknown", prefName);
             } else {
                 HashSet hs = new HashSet();
                 hs.add(prefName);
-                names.setName((String) "en", hs);
+                names.setName((String) "unknown", hs);
             }
             json.setGeometry(geometry);
             json.setProperties("http://sws.geonames.org/" + id, id, "geonames", names);
@@ -133,12 +133,12 @@ public class GeoNames {
                     }
                 }
                 // add prefName to names array
-                if (names.getNamesByLanguage("en") != null) {
-                    names.addName("en", prefName);
+                if (names.getNamesByLanguage("unknown") != null) {
+                    names.addName("unknown", prefName);
                 } else {
                     HashSet hs = new HashSet();
                     hs.add(prefName);
-                    names.setName((String) "en", hs);
+                    names.setName((String) "unknown", hs);
                 }
                 // get geometry
                 Double lon = Double.parseDouble((String) tmp.get("lng"));
@@ -206,12 +206,12 @@ public class GeoNames {
                     }
                 }
                 // add prefName to names array
-                if (names.getNamesByLanguage("en") != null) {
-                    names.addName("en", prefName);
+                if (names.getNamesByLanguage("unknown") != null) {
+                    names.addName("unknown", prefName);
                 } else {
                     HashSet hs = new HashSet();
                     hs.add(prefName);
-                    names.setName((String) "en", hs);
+                    names.setName((String) "unknown", hs);
                 }
                 // get geometry
                 Double lon = Double.parseDouble((String) tmp.get("lng"));
