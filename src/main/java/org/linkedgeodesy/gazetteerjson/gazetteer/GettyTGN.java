@@ -83,7 +83,6 @@ public class GettyTGN {
             geometry.put("coordinates", point);
             // add and get names
             NamesJSONObject names = new NamesJSONObject();
-            // get prefLabels
             for (Object item : bindings) {
                 JSONObject binding = (JSONObject) item;
                 JSONObject prefLabelObj = (JSONObject) binding.get("prefLabel");
@@ -184,22 +183,23 @@ public class GettyTGN {
             // loop through hashmap
             for (Map.Entry<String, JSONArray> entry : hm.entrySet()) {
                 String key = entry.getKey();
-                //System.out.println(key);
                 JSONArray value = (JSONArray) entry.getValue();
-                //System.out.println(value.size());
                 JSONObject val0 = (JSONObject) value.get(0);
                 // add and get names
                 NamesJSONObject names = new NamesJSONObject();
                 // get prefLabels
-                JSONObject prefLabelObj = (JSONObject) val0.get("prefLabel");
-                String prefLabelString = (String) prefLabelObj.get("value");
-                String prefLabelLang = (String) prefLabelObj.get("xml:lang");
-                if (prefLabelLang == null) {
-                    prefLabelLang = "en";
+                for (Object item : value) {
+                    JSONObject binding = (JSONObject) item;
+                    JSONObject prefLabelObj = (JSONObject) binding.get("prefLabel");
+                    String prefLabelString = (String) prefLabelObj.get("value");
+                    String prefLabelLang = (String) prefLabelObj.get("xml:lang");
+                    if (prefLabelLang == null) {
+                        prefLabelLang = "en";
+                    }
+                    HashSet hs = new HashSet();
+                    hs.add(prefLabelString);
+                    names.setName(prefLabelLang, hs);
                 }
-                HashSet hs = new HashSet();
-                hs.add(prefLabelString);
-                names.setName(prefLabelLang, hs);
                 // get id
                 JSONObject idObj = (JSONObject) val0.get("id");
                 String id = (String) idObj.get("value");
@@ -235,6 +235,7 @@ public class GettyTGN {
                         if (names.getNamesByLanguage(altLabelLang) != null) {
                             names.addName(altLabelLang, altLabelString);
                         } else {
+                            HashSet hs = new HashSet();
                             hs.add(altLabelString);
                             names.setName(altLabelLang, hs);
                         }

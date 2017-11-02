@@ -26,7 +26,7 @@ public class Main {
     public static void main(String[] args) throws IOException, SQLException {
         List<String> o = new ArrayList();
         try {
-            /*o.add("# POM_gazetteerjson.getInfo" + "\r\n");
+            o.add("# POM_gazetteerjson.getInfo" + "\r\n");
             o.add(POM_gazetteerjson.getInfo().toJSONString() + "\r\n");
             o.add("# IDAIGazetteer.getPlaceById" + "\r\n");
             o.add(IDAIGazetteer.getPlaceById("2181124").toJSONString() + "\r\n");
@@ -41,10 +41,13 @@ public class Main {
             o.add("# GeoNames.getPlacesByBBox" + "\r\n");
             o.add(GeoNames.getPlacesByBBox("50.082665", "8.161050", "49.903887", "8.161050", "49.903887", "8.371850", "50.082665", "8.371850").toJSONString() + "\r\n");
             o.add("# GeoNames.getPlacesByString" + "\r\n");
-            o.add(GeoNames.getPlacesByString("Mainz").toJSONString() + "\r\n");*/
+            o.add(GeoNames.getPlacesByString("Mainz").toJSONString() + "\r\n");
             o.add("# GettyTGN.getPlaceById" + "\r\n");
-            o.add(GettyTGN.getPlaceById("7004449").toJSONString() + "\r\n");
-            o.add(GettyTGN.getPlaceById("7020892").toJSONString() + "\r\n");
+            o.add(GettyTGN.getPlaceById("7004449").toJSONString() + "\r\n"); // Mainz
+            o.add(GettyTGN.getPlaceById("7008038").toJSONString() + "\r\n"); // Paris
+            o.add("# GettyTGN.getPlacesByBBox" + "\r\n");
+            o.add(GettyTGN.getPlacesByBBox("50.082665", "8.161050", "49.903887", "8.161050", "49.903887", "8.371850", "50.082665", "8.371850").toJSONString() + "\r\n");
+            o.add(GettyTGN.getPlacesByBBox("48.866667", "2.333333", "48.866667", "2.333333", "48.866667", "2.333333", "48.866667", "2.333333").toJSONString() + "\r\n");
             FileOutput.writeFile(o);
         } catch (Exception e) {
             System.out.println(Logging.getMessageJSON(e, "org.linkedgeodesy.gazetteerjson.run.Main").toJSONString());
