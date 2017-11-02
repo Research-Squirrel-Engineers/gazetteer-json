@@ -377,7 +377,7 @@ public class GettyTGN {
                     }
                 }
             }
-            json.setMetadata("geonames", null, null, null, null, null, null, null, null, searchString);
+            json.setMetadata("getty", null, null, null, null, null, null, null, null, searchString);
         }
         return json;
     }
