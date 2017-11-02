@@ -71,5 +71,12 @@ public class GGeoJSONFeatureObject extends GGeoJSONSingleFeature {
         properties.put("similarity", similarity);
         super.put("properties", properties);
     }
+    
+    public Double getDistance() {
+        JSONObject properties = (JSONObject) super.get("properties");
+        JSONObject similarity = (JSONObject) properties.get("similarity");
+        Double distance = (Double) similarity.get("distance");
+        return distance;
+    }
 
 }
