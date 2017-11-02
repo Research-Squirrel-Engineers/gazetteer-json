@@ -64,6 +64,7 @@ public class GeoNames {
             // add and get names
             NamesJSONObject names = new NamesJSONObject();
             String prefName = rootNode.getChildText("name");
+            names.addPrefName("unknown", prefName);
             List alternateNames = rootNode.getChildren("alternateName");
             for (Object item : alternateNames) {
                 Element node = (Element) item;
@@ -117,9 +118,10 @@ public class GeoNames {
             for (Object item : geonames) {
                 JSONObject tmp = (JSONObject) item;
                 // get names
-                String prefName = (String) tmp.get("name");
-                JSONArray alternateNames = (JSONArray) tmp.get("alternateNames");
                 NamesJSONObject names = new NamesJSONObject();
+                String prefName = (String) tmp.get("name");
+                names.addPrefName("unknown", prefName);
+                JSONArray alternateNames = (JSONArray) tmp.get("alternateNames");
                 if (alternateNames != null) {
                     for (Object item2 : alternateNames) {
                         JSONObject tmp2 = (JSONObject) item2;
@@ -190,9 +192,10 @@ public class GeoNames {
             for (Object item : geonames) {
                 JSONObject tmp = (JSONObject) item;
                 // get names
-                String prefName = (String) tmp.get("name");
-                JSONArray alternateNames = (JSONArray) tmp.get("alternateNames");
                 NamesJSONObject names = new NamesJSONObject();
+                String prefName = (String) tmp.get("name");
+                names.addPrefName("unknown", prefName);
+                JSONArray alternateNames = (JSONArray) tmp.get("alternateNames");
                 if (alternateNames != null) {
                     for (Object item2 : alternateNames) {
                         JSONObject tmp2 = (JSONObject) item2;
