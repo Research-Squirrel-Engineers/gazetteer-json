@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import org.jdom.JDOMException;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -22,7 +23,7 @@ public class ChronOntology {
 
     public static final String[] TYPES = {"spatiallyPartOfRegion", "isNamedAfter", "hasCoreArea"};
 
-    public static CGeoJSONFeatureCollection getPlacesById(String id) throws IOException, ParseException {
+    public static CGeoJSONFeatureCollection getPlacesById(String id) throws IOException, ParseException, JDOMException {
         CGeoJSONFeatureCollection json = new CGeoJSONFeatureCollection();
         // init output
         // get data from chronontology
@@ -73,8 +74,32 @@ public class ChronOntology {
                     for (Object element : spatialURIs) {
                         String tmp = (String) element;
                         if (tmp.contains("gazetteer.dainst.org")) {
-                            String[] daiID = tmp.split("/");
-                            GGeoJSONSingleFeature feature = IDAIGazetteer.getPlaceById(daiID[daiID.length-1]);
+                            String[] thisID = tmp.split("/");
+                            GGeoJSONSingleFeature feature = IDAIGazetteer.getPlaceById(thisID[thisID.length - 1]);
+                            CGeoJSONFeatureObject featureObj = new CGeoJSONFeatureObject();
+                            featureObj.setGeometry(feature.getGeometry());
+                            featureObj.setProperties(feature.getProperties());
+                            featureObj.setProperty("gazetteerrelation", item);
+                            json.setFeature(featureObj);
+                        } else if (tmp.contains("sws.geonames.org")) {
+                            String[] thisID = tmp.split("/");
+                            GGeoJSONSingleFeature feature = GeoNames.getPlaceById(thisID[thisID.length - 1]);
+                            CGeoJSONFeatureObject featureObj = new CGeoJSONFeatureObject();
+                            featureObj.setGeometry(feature.getGeometry());
+                            featureObj.setProperties(feature.getProperties());
+                            featureObj.setProperty("gazetteerrelation", item);
+                            json.setFeature(featureObj);
+                        } else if (tmp.contains("vocab.getty.edu")) {
+                            String[] thisID = tmp.split("/");
+                            GGeoJSONSingleFeature feature = GettyTGN.getPlaceById(thisID[thisID.length - 1]);
+                            CGeoJSONFeatureObject featureObj = new CGeoJSONFeatureObject();
+                            featureObj.setGeometry(feature.getGeometry());
+                            featureObj.setProperties(feature.getProperties());
+                            featureObj.setProperty("gazetteerrelation", item);
+                            json.setFeature(featureObj);
+                        } else if (tmp.contains("pleiades.stoa.org")) {
+                            String[] thisID = tmp.split("/");
+                            GGeoJSONSingleFeature feature = Pleiades.getPlaceById(thisID[thisID.length - 1]);
                             CGeoJSONFeatureObject featureObj = new CGeoJSONFeatureObject();
                             featureObj.setGeometry(feature.getGeometry());
                             featureObj.setProperties(feature.getProperties());
