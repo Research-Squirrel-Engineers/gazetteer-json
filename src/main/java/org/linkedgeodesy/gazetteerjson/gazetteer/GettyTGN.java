@@ -88,21 +88,13 @@ public class GettyTGN {
             JSONObject prefLabelObj0 = (JSONObject) binding0.get("prefLabel");
             String prefLabelString0 = (String) prefLabelObj0.get("value");
             String prefLabelLang0 = (String) prefLabelObj0.get("xml:lang");
-            if (prefLabelLang0 == null) {
-                prefLabelLang0 = "unknown";
-            }
             names.addPrefName(prefLabelLang0, prefLabelString0);
             for (Object item : bindings) {
                 JSONObject binding = (JSONObject) item;
                 JSONObject prefLabelObj = (JSONObject) binding.get("prefLabel");
                 String prefLabelString = (String) prefLabelObj.get("value");
                 String prefLabelLang = (String) prefLabelObj.get("xml:lang");
-                if (prefLabelLang == null) {
-                    prefLabelLang = "unknown";
-                }
-                HashSet hs = new HashSet();
-                hs.add(prefLabelString);
-                names.setName(prefLabelLang, hs);
+                names.addSingleName(prefLabelLang, prefLabelString);
             }
             // get altLabels
             for (Object item : bindings) {
@@ -110,17 +102,7 @@ public class GettyTGN {
                 JSONObject altLabelObj = (JSONObject) binding.get("altLabel");
                 String altLabelString = (String) altLabelObj.get("value");
                 String altLabelLang = (String) altLabelObj.get("xml:lang");
-                // add altLabel to names array
-                if (altLabelLang == null) {
-                    altLabelLang = "unknown";
-                }
-                if (names.getNamesByLanguage(altLabelLang) != null) {
-                    names.addSingleName(altLabelLang, altLabelString);
-                } else {
-                    HashSet hs = new HashSet();
-                    hs.add(altLabelString);
-                    names.setName(altLabelLang, hs);
-                }
+                names.addSingleName(altLabelLang, altLabelString);
             }
             json.setGeometry((geometry));
             json.setProperties(placeURI, id, "getty", names);
@@ -200,9 +182,6 @@ public class GettyTGN {
                 JSONObject prefLabelObj0 = (JSONObject) val0.get("prefLabel");
                 String prefLabelString0 = (String) prefLabelObj0.get("value");
                 String prefLabelLang0 = (String) prefLabelObj0.get("xml:lang");
-                if (prefLabelLang0 == null) {
-                    prefLabelLang0 = "unknown";
-                }
                 names.addPrefName(prefLabelLang0, prefLabelString0);
                 // get prefLabels
                 for (Object item : value) {
@@ -210,12 +189,17 @@ public class GettyTGN {
                     JSONObject prefLabelObj = (JSONObject) binding.get("prefLabel");
                     String prefLabelString = (String) prefLabelObj.get("value");
                     String prefLabelLang = (String) prefLabelObj.get("xml:lang");
-                    if (prefLabelLang == null) {
-                        prefLabelLang = "unknown";
+                    names.addSingleName(prefLabelLang, prefLabelString);
+                }
+                // get altLabels
+                for (Object item : value) {
+                    JSONObject binding = (JSONObject) item;
+                    JSONObject altLabelObj = (JSONObject) binding.get("altLabel");
+                    if (altLabelObj != null) {
+                        String altLabelString = (String) altLabelObj.get("value");
+                        String altLabelLang = (String) altLabelObj.get("xml:lang");
+                        names.addSingleName(altLabelLang, altLabelString);
                     }
-                    HashSet hs = new HashSet();
-                    hs.add(prefLabelString);
-                    names.setName(prefLabelLang, hs);
                 }
                 // get id
                 JSONObject idObj = (JSONObject) val0.get("id");
@@ -238,26 +222,6 @@ public class GettyTGN {
                 Double bboxlon = (Double) bbox.get(1);
                 Double bboxlat = (Double) bbox.get(0);
                 feature.setPropertiesDistanceSimilarity(bboxlon, bboxlat, Double.parseDouble((String) lat.get("value")), Double.parseDouble((String) lng.get("value")));
-                for (Object item : value) {
-                    JSONObject val = (JSONObject) item;
-                    // get altLabels
-                    JSONObject altLabelObj = (JSONObject) val.get("altLabel");
-                    if (altLabelObj != null) {
-                        String altLabelString = (String) altLabelObj.get("value");
-                        String altLabelLang = (String) altLabelObj.get("xml:lang");
-                        // add altLabel to names array
-                        if (altLabelLang == null) {
-                            altLabelLang = "unknown";
-                        }
-                        if (names.getNamesByLanguage(altLabelLang) != null) {
-                            names.addSingleName(altLabelLang, altLabelString);
-                        } else {
-                            HashSet hs = new HashSet();
-                            hs.add(altLabelString);
-                            names.setName(altLabelLang, hs);
-                        }
-                    }
-                }
             }
             json.setMetadata("getty", upperleftLat, upperleftLon, upperrightLat, upperrightLon, lowerrightLat, lowerrightLon, lowerleftLat, lowerleftLon, null);
         }
@@ -335,9 +299,6 @@ public class GettyTGN {
                 JSONObject prefLabelObj0 = (JSONObject) val0.get("prefLabel");
                 String prefLabelString0 = (String) prefLabelObj0.get("value");
                 String prefLabelLang0 = (String) prefLabelObj0.get("xml:lang");
-                if (prefLabelLang0 == null) {
-                    prefLabelLang0 = "unknown";
-                }
                 names.addPrefName(prefLabelLang0, prefLabelString0);
                 // get prefLabels
                 for (Object item : value) {
@@ -345,12 +306,17 @@ public class GettyTGN {
                     JSONObject prefLabelObj = (JSONObject) binding.get("prefLabel");
                     String prefLabelString = (String) prefLabelObj.get("value");
                     String prefLabelLang = (String) prefLabelObj.get("xml:lang");
-                    if (prefLabelLang == null) {
-                        prefLabelLang = "unknown";
+                    names.addSingleName(prefLabelLang, prefLabelString);
+                }
+                // get altLabels
+                for (Object item : value) {
+                    JSONObject binding = (JSONObject) item;
+                    JSONObject altLabelObj = (JSONObject) binding.get("altLabel");
+                    if (altLabelObj != null) {
+                        String altLabelString = (String) altLabelObj.get("value");
+                        String altLabelLang = (String) altLabelObj.get("xml:lang");
+                        names.addSingleName(altLabelLang, altLabelString);
                     }
-                    HashSet hs = new HashSet();
-                    hs.add(prefLabelString);
-                    names.setName(prefLabelLang, hs);
                 }
                 // get id
                 JSONObject idObj = (JSONObject) val0.get("id");
@@ -374,26 +340,6 @@ public class GettyTGN {
                 double dameraulevenshtein = StringSimilarity.Damerau(searchString, prefLabelString0);
                 double jarowinkler = StringSimilarity.JaroWinkler(searchString, prefLabelString0);
                 feature.setPropertiesStringSimilarity(levenshtein, normalizedlevenshtein, dameraulevenshtein, jarowinkler, searchString, prefLabelString0);
-                for (Object item : value) {
-                    JSONObject val = (JSONObject) item;
-                    // get altLabels
-                    JSONObject altLabelObj = (JSONObject) val.get("altLabel");
-                    if (altLabelObj != null) {
-                        String altLabelString = (String) altLabelObj.get("value");
-                        String altLabelLang = (String) altLabelObj.get("xml:lang");
-                        // add altLabel to names array
-                        if (altLabelLang == null) {
-                            altLabelLang = "unknown";
-                        }
-                        if (names.getNamesByLanguage(altLabelLang) != null) {
-                            names.addSingleName(altLabelLang, altLabelString);
-                        } else {
-                            HashSet hs = new HashSet();
-                            hs.add(altLabelString);
-                            names.setName(altLabelLang, hs);
-                        }
-                    }
-                }
             }
             json.setMetadata("getty", null, null, null, null, null, null, null, null, searchString);
         }
