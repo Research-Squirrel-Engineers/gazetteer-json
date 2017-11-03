@@ -106,4 +106,8 @@ University of Applied Sciences, [Website](http://i3mainz.hs-mainz.de/)
 
 ## More Information
 
+How does it work? How are the foreign gazetteers quaried? Look [here](https://github.com/linkedgeodesy/gazetteer-json/tree/master/how-it-works).
+
+Some samples of the method structure can be found in the [apidoc](https://github.com/linkedgeodesy/gazetteer-json/tree/master/apidoc).
+
 The resulting JSON data structure is based on [GeoJSON+](https://github.com/linkedgeodesy/geojson-plus) and [GeoJSON+ Linked Data](https://github.com/linkedgeodesy/geojson-plus-ld).
