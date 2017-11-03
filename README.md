@@ -1,4 +1,4 @@
-# gazetteer-json
+# Gazetteer JSON
 
 A Library for Gazetteer JSON access.
 
@@ -95,6 +95,11 @@ libraryDependencies += "com.github.linkedgeodesy" % "gazetteer-json" % "${versio
 :dependencies [[com.github.linkedgeodesy/gazetteer-json "${version}"]]
 ```
 
-## Repo Developers
+## Developers and License Holder
 
-Florian Thiery M.Sc. (i3mainz)
+Florian Thiery M.Sc.<sup>1</sup>,  i3mainz<sup>2</sup>
+
+<sup>1</sup> Florian Thiery M.Sc., [Linked Geodesy](http://linkedgeodesy.org), [ORCID](http://orcid.org/0000-0002-3246-3531)
+
+<sup>2</sup> i3mainz - Institute for Spatial Information and Surveying Technology at School of Technology, Hochschule Mainz
+University of Applied Sciences, [Website](http://i3mainz.hs-mainz.de/)
