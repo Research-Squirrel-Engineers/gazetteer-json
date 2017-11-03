@@ -58,6 +58,9 @@ public class NamesJSONObject extends JSONObject {
         if (language.equals("")) {
             language = "unknown";
         }
+        if (language.equals("link")) {
+            return;
+        }
         JSONArray namesArray = (JSONArray) super.get(language);
         if (namesArray == null) {
             JSONArray tmp = new JSONArray();
@@ -87,6 +90,9 @@ public class NamesJSONObject extends JSONObject {
         }
         if (language.equals("")) {
             language = "unknown";
+        }
+        if (language.equals("link")) {
+            return;
         }
         JSONObject prefName = new JSONObject();
         prefName.put("name", name);
