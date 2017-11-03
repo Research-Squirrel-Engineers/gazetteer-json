@@ -16,37 +16,33 @@ public class NamesJSONObject extends JSONObject {
     }
 
     /**
-     * set multiple names for one language
+     * add a pref name
      *
      * @param language
-     * @param names
+     * @param name
      */
-    public void setName(String language, HashSet names) {
+    public void addPrefName(String language, String name) {
+        if (language == null) {
+            language = "unknown";
+        }
+        if (language.equals("")) {
+            language = "unknown";
+        }
+        if (language.equals("link")) {
+            return;
+        }
+        JSONObject prefName = new JSONObject();
+        prefName.put("name", name);
+        prefName.put("lang", language);
+        super.put("prefName", prefName);
         JSONArray namesArray = new JSONArray();
-        for (Object item : names) {
-            String tmp = (String) item;
-            namesArray.add(tmp);
-        }
+        namesArray.add(name);
+        super.remove(language);
         super.put(language, namesArray);
-    }
-    
-    /**
-     * set multiple names for one language
-     *
-     * @param language
-     * @param names
-     */
-    public void addNameArray(String language, JSONArray namesArray) {
-        JSONArray tmp = (JSONArray) super.get(language);
-        if (tmp == null) {
-            tmp = namesArray;
-        }
-        tmp.add(namesArray);
-        super.put(language, tmp);
     }
 
     /**
-     * set an addition name to a language
+     * add a alternative name
      *
      * @param language
      * @param name
@@ -82,26 +78,6 @@ public class NamesJSONObject extends JSONObject {
      */
     public JSONArray getNamesByLanguage(String language) {
         return (JSONArray) super.get(language);
-    }
-    
-    public void addPrefName(String language, String name) {
-        if (language == null) {
-            language = "unknown";
-        }
-        if (language.equals("")) {
-            language = "unknown";
-        }
-        if (language.equals("link")) {
-            return;
-        }
-        JSONObject prefName = new JSONObject();
-        prefName.put("name", name);
-        prefName.put("lang", language);
-        super.put("prefName", prefName);
-        JSONArray namesArray = new JSONArray();
-        namesArray.add(name);
-        super.remove(language);
-        super.put(language, namesArray);
     }
 
 }
