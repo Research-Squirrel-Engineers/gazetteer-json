@@ -193,3 +193,43 @@ SELECT DISTINCT ?place ?prefLabel ?altLabel ?lat ?long ?id WHERE {
 * **prefName:** `json.results.bindings[index,0].prefLabel.{value,xml:lang}`
 * **altNames:** `json.results.bindings[index,i].altLabel.{value,xml:lang}`
 * **geometry:** `json.results.bindings[index,0].{lat,long}.value`
+
+## Pleiades
+
+Query Pleiades using the [Pelagios Peripleo API](https://github.com/pelagios/peripleo) v1.
+
+### getPlaceById()
+
+**request:**
+* **url:** `http://pelagios.org/peripleo/places/http:%2F%2Fpleiades.stoa.org%2Fplaces%2F:id`
+* **method:** `GET`
+* **response:** `JSON`
+
+**used attributes:**
+* **prefName:** `json.title`
+* **altNames:** `json.names[i]`
+* **geometry:** `json.geo_bounds.{min_lon,max_lon,min_lat,max_lat}` calculate a point if `min_lon=max_lon && min_lat=max_lat` or a bounding box
+
+### getPlacesByBBox()
+
+**request:**
+* **url:** `http://pelagios.org/peripleo/search?bbox=upperleftLon,lowerleftLon,upperrightLat,upperleftLat&types=place&limit=10000`
+* **method:** `GET`
+* **response:** `JSON`
+
+**used attributes:**
+* **prefName:** `json.items[i].title`
+* **altNames:** `json.items[i].names[i]`
+* **geometry:** `json.items[i].geo_bounds.{min_lon,max_lon,min_lat,max_lat}` calculate a point if `min_lon=max_lon && min_lat=max_lat` or a bounding box
+
+### getPlacesByString()
+
+**request:**
+* **url:** `http://pelagios.org/peripleo/search?query={searchString}&types=place&limit=250`
+* **method:** `GET`
+* **response:** `JSON`
+
+**used attributes:**
+* **prefName:** `json.items[i].title`
+* **altNames:** `json.items[i].names[i]`
+* **geometry:** `json.items[i].geo_bounds.{min_lon,max_lon,min_lat,max_lat}` calculate a point if `min_lon=max_lon && min_lat=max_lat` or a bounding box
