@@ -1,5 +1,13 @@
 # *Gazetteer JSON - How it works!*
 
+## Index of Contents
+
+* [ChronOntology](#chronontology)
+* [iDAI.gazetteer](#idaigazetteer)
+* [GeoNames](#geonames)
+* [Getty TGN](#getty-tgn)
+* [Pleiades](#pleiades)
+
 ## ChronOntology
 
 Query ChronOntology using the API.
