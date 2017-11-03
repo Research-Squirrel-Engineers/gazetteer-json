@@ -68,21 +68,7 @@ public class GeoNames {
             List alternateNames = rootNode.getChildren("alternateName");
             for (Object item : alternateNames) {
                 Element node = (Element) item;
-                HashSet hs = new HashSet();
-                hs.add(node.getText());
-                if (node.getAttributeValue("lang") != null) {
-                    if (!node.getAttributeValue("lang").equals("link")) {
-                        names.setName((String) node.getAttributeValue("lang"), hs);
-                    }
-                }
-            }
-            // add prefName to names array
-            if (names.getNamesByLanguage("unknown") != null) {
-                names.addSingleName("unknown", prefName);
-            } else {
-                HashSet hs = new HashSet();
-                hs.add(prefName);
-                names.setName((String) "unknown", hs);
+                names.addSingleName(node.getAttributeValue("lang"), node.getText());
             }
             json.setGeometry(geometry);
             json.setProperties("http://sws.geonames.org/" + id, id, "geonames", names);
@@ -117,7 +103,7 @@ public class GeoNames {
             JSONArray geonames = (JSONArray) resultObject.get("geonames");
             for (Object item : geonames) {
                 JSONObject tmp = (JSONObject) item;
-                // get names
+                // add and get names
                 NamesJSONObject names = new NamesJSONObject();
                 String prefName = (String) tmp.get("name");
                 names.addPrefName("unknown", prefName);
@@ -125,22 +111,8 @@ public class GeoNames {
                 if (alternateNames != null) {
                     for (Object item2 : alternateNames) {
                         JSONObject tmp2 = (JSONObject) item2;
-                        if (tmp2.get("lang") != null) {
-                            HashSet hs = new HashSet();
-                            hs.add(tmp2.get("name"));
-                            if (!tmp2.get("lang").equals("link")) {
-                                names.setName((String) tmp2.get("lang"), hs);
-                            }
-                        }
+                        names.addSingleName((String) tmp2.get("lang"), (String) tmp2.get("name"));
                     }
-                }
-                // add prefName to names array
-                if (names.getNamesByLanguage("unknown") != null) {
-                    names.addSingleName("unknown", prefName);
-                } else {
-                    HashSet hs = new HashSet();
-                    hs.add(prefName);
-                    names.setName((String) "unknown", hs);
                 }
                 // get geometry
                 Double lon = Double.parseDouble((String) tmp.get("lng"));
@@ -191,7 +163,7 @@ public class GeoNames {
             JSONArray geonames = (JSONArray) resultObject.get("geonames");
             for (Object item : geonames) {
                 JSONObject tmp = (JSONObject) item;
-                // get names
+                // add and get names
                 NamesJSONObject names = new NamesJSONObject();
                 String prefName = (String) tmp.get("name");
                 names.addPrefName("unknown", prefName);
@@ -199,22 +171,8 @@ public class GeoNames {
                 if (alternateNames != null) {
                     for (Object item2 : alternateNames) {
                         JSONObject tmp2 = (JSONObject) item2;
-                        if (tmp2.get("lang") != null) {
-                            HashSet hs = new HashSet();
-                            hs.add(tmp2.get("name"));
-                            if (!tmp2.get("lang").equals("link")) {
-                                names.setName((String) tmp2.get("lang"), hs);
-                            }
-                        }
+                        names.addSingleName((String) tmp2.get("lang"), (String) tmp2.get("name"));
                     }
-                }
-                // add prefName to names array
-                if (names.getNamesByLanguage("unknown") != null) {
-                    names.addSingleName("unknown", prefName);
-                } else {
-                    HashSet hs = new HashSet();
-                    hs.add(prefName);
-                    names.setName((String) "unknown", hs);
                 }
                 // get geometry
                 Double lon = Double.parseDouble((String) tmp.get("lng"));
