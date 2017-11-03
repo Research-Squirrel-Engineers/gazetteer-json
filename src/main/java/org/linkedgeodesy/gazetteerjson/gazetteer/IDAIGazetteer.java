@@ -91,28 +91,20 @@ public class IDAIGazetteer {
             JSONArray result = (JSONArray) resultObject.get("result");
             for (Object item : result) {
                 JSONObject tmp = (JSONObject) item;
+                NamesJSONObject names = new NamesJSONObject();
+                // set prefName
+                JSONObject prefName = (JSONObject) tmp.get("prefName");
+                String titlePN = (String) prefName.get("title");
+                String langPN = (String) prefName.get("language");
+                names.addPrefName(langPN, titlePN);
                 // get names
                 JSONArray dainames = (JSONArray) tmp.get("names");
-                NamesJSONObject names = new NamesJSONObject();
                 if (dainames != null) {
                     for (Object item2 : dainames) {
                         JSONObject tmp2 = (JSONObject) item2;
-                        if (tmp2.get("language") != null) {
-                            if (!tmp2.get("language").equals("")) {
-                                HashSet hs = new HashSet();
-                                hs.add(tmp2.get("title"));
-                                String lang = (String) tmp2.get("language");
-                                names.setName(lang, hs);
-                            } else {
-                                HashSet hs = new HashSet();
-                                hs.add(tmp2.get("title"));
-                                names.setName("unknown", hs);
-                            }
-                        } else {
-                            HashSet hs = new HashSet();
-                            hs.add(tmp2.get("title"));
-                            names.setName("unknown", hs);
-                        }
+                        String langTmp = (String) tmp2.get("language");
+                        String titleTmp = (String) tmp2.get("title");
+                        names.addSingleName(langTmp, titleTmp);
                     }
                 }
                 // get geometry
@@ -166,27 +158,20 @@ public class IDAIGazetteer {
                 JSONObject tmp = (JSONObject) item;
                 GGeoJSONFeatureObject feature = new GGeoJSONFeatureObject();
                 // get names
-                JSONArray dainames = (JSONArray) tmp.get("names");
                 NamesJSONObject names = new NamesJSONObject();
+                // set prefName
+                JSONObject prefName = (JSONObject) tmp.get("prefName");
+                String titlePN = (String) prefName.get("title");
+                String langPN = (String) prefName.get("language");
+                names.addPrefName(langPN, titlePN);
+                // get names
+                JSONArray dainames = (JSONArray) tmp.get("names");
                 if (dainames != null) {
                     for (Object item2 : dainames) {
                         JSONObject tmp2 = (JSONObject) item2;
-                        if (tmp2.get("language") != null) {
-                            if (!tmp2.get("language").equals("")) {
-                                HashSet hs = new HashSet();
-                                hs.add(tmp2.get("title"));
-                                String lang = (String) tmp2.get("language");
-                                names.setName(lang, hs);
-                            } else {
-                                HashSet hs = new HashSet();
-                                hs.add(tmp2.get("title"));
-                                names.setName("unknown", hs);
-                            }
-                        } else {
-                            HashSet hs = new HashSet();
-                            hs.add(tmp2.get("title"));
-                            names.setName("unknown", hs);
-                        }
+                        String langTmp = (String) tmp2.get("language");
+                        String titleTmp = (String) tmp2.get("title");
+                        names.addSingleName(langTmp, titleTmp);
                     }
                 }
                 // get geometry
@@ -201,7 +186,6 @@ public class IDAIGazetteer {
                     json.setFeature(feature);
                 }
                 // get prefName
-                JSONObject prefName = (JSONObject) tmp.get("prefName");
                 double levenshtein = StringSimilarity.Levenshtein(searchString, (String) prefName.get("title"));
                 double normalizedlevenshtein = StringSimilarity.NormalizedLevenshtein(searchString, (String) prefName.get("title"));
                 double dameraulevenshtein = StringSimilarity.Damerau(searchString, (String) prefName.get("title"));
