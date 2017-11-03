@@ -1,5 +1,27 @@
 # *Gazetteer JSON - How it works!*
 
+## ChronOntology
+
+Query ChronOntology using the API.
+
+### getPlaceById()
+
+**request:**
+* **url:** `http://chronontology.dainst.org/data/period/:id`
+* **method:** `GET`
+* **header:** `Accept: application/json`
+* **response:** `JSON`
+
+**used attributes:**
+* **feature:** see place gazetteer information + gazetteerrelation `json.resource.{spatiallyPartOfRegion!=0,hasCoreArea!=0,isNamedAfter!=0}`
+* **metadata:**
+  * **@id**: `http://chronontology.dainst.org/data/period/{json.resource.id}`
+  * **periodid**: `json.resource.id`
+  * **chronontology**: `json`
+  * **names**: `json.resource.names`
+  * **when**: `json.resource.hasTimespan`
+  * **coverage**: `json.resource.[spatiallyPartOfRegion,hasCoreArea,isNamedAfter]`
+
 ## iDAI.gazetteer
 
 Query the iDAI.gazetteer using the API.
