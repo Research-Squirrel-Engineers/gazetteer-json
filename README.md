@@ -97,7 +97,7 @@ libraryDependencies += "com.github.linkedgeodesy" % "gazetteer-json" % "${versio
 
 ## Developers and License Holder
 
-Florian Thiery M.Sc.<sup>1</sup>,  i3mainz<sup>2</sup>
+Florian Thiery M.Sc.<sup>1</sup>, i3mainz<sup>2</sup>
 
 <sup>1</sup> Florian Thiery M.Sc., [Linked Geodesy](http://linkedgeodesy.org), [ORCID](http://orcid.org/0000-0002-3246-3531)
 
