@@ -43,8 +43,20 @@ public class IDAIGazetteer {
             in.close();
             JSONObject jsonObject = (JSONObject) new JSONParser().parse(response.toString());
             JSONObject properties = (JSONObject) jsonObject.get("properties");
-            JSONArray dainames = (JSONArray) properties.get("names");
             NamesJSONObject names = new NamesJSONObject();
+            JSONObject prefName = (JSONObject) properties.get("prefName");
+            String titlePN = (String) prefName.get("title");
+            String langPN = (String) prefName.get("language");
+            if (langPN != null) {
+                if (!langPN.equals("")) {
+                    names.addPrefName(langPN, titlePN);
+                } else {
+                    names.addPrefName("unknown", titlePN);
+                }
+            } else {
+                names.addPrefName("unknown", titlePN);
+            }
+            JSONArray dainames = (JSONArray) properties.get("names");
             for (Object item : dainames) {
                 JSONObject tmp = (JSONObject) item;
                 if (tmp.get("language") != null && !tmp.get("language").equals("")) {
@@ -98,11 +110,17 @@ public class IDAIGazetteer {
                 if (dainames != null) {
                     for (Object item2 : dainames) {
                         JSONObject tmp2 = (JSONObject) item2;
-                        if (tmp2.get("language") != null && !tmp.get("language").equals("")) {
-                            HashSet hs = new HashSet();
-                            hs.add(tmp2.get("title"));
-                            String lang = (String) tmp2.get("language");
-                            names.setName(lang, hs);
+                        if (tmp2.get("language") != null) {
+                            if (!tmp2.get("language").equals("")) {
+                                HashSet hs = new HashSet();
+                                hs.add(tmp2.get("title"));
+                                String lang = (String) tmp2.get("language");
+                                names.setName(lang, hs);
+                            } else {
+                                HashSet hs = new HashSet();
+                                hs.add(tmp2.get("title"));
+                                names.setName("unknown", hs);
+                            }
                         } else {
                             HashSet hs = new HashSet();
                             hs.add(tmp2.get("title"));
@@ -166,11 +184,17 @@ public class IDAIGazetteer {
                 if (dainames != null) {
                     for (Object item2 : dainames) {
                         JSONObject tmp2 = (JSONObject) item2;
-                        if (tmp2.get("language") != null && !tmp.get("language").equals("")) {
-                            HashSet hs = new HashSet();
-                            hs.add(tmp2.get("title"));
-                            String lang = (String) tmp2.get("language");
-                            names.setName(lang, hs);
+                        if (tmp2.get("language") != null) {
+                            if (!tmp2.get("language").equals("")) {
+                                HashSet hs = new HashSet();
+                                hs.add(tmp2.get("title"));
+                                String lang = (String) tmp2.get("language");
+                                names.setName(lang, hs);
+                            } else {
+                                HashSet hs = new HashSet();
+                                hs.add(tmp2.get("title"));
+                                names.setName("unknown", hs);
+                            }
                         } else {
                             HashSet hs = new HashSet();
                             hs.add(tmp2.get("title"));
