@@ -82,3 +82,114 @@ Query GeoNames using the API.
 * **prefName:** `json.geonames.name`
 * **altNames:** `json.geonames.alternateNames[i].{name,lang}`
 * **geometry:** `json.geonames.{lat,lng}`
+
+## Getty TGN
+
+Query The Getty TGN using the SPARQL endpoint.
+
+### getPlaceById()
+
+**request:**
+* **url:** `http://vocab.getty.edu/sparql.json?query={SPARQL}`
+* **method:** `POST`
+* **response:** `application/sparql-results+json`
+
+**SPARQL:**
+
+```SQL
+PREFIX ontogeo: <http://www.ontotext.com/owlim/geo#>
+PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX tgn: <http://vocab.getty.edu/tgn/>
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+PREFIX gvp: <http://vocab.getty.edu/ontology#>
+PREFIX skosxl: <http://www.w3.org/2008/05/skos-xl#>
+PREFIX dc: <http://purl.org/dc/elements/1.1/>
+
+SELECT DISTINCT ?place ?prefLabel ?altLabel ?lat ?long WHERE {
+  ?place skos:inScheme tgn: .
+  ?place dc:identifier "id" .
+  ?place xl:prefLabel [skosxl:literalForm ?prefLabel] .
+  OPTIONAL { ?place xl:altLabel [skosxl:literalForm ?altLabel] }.
+  ?place foaf:focus ?p.
+  ?p geo:lat ?lat .
+  ?p geo:long ?long .
+}
+```
+
+**used attributes:**
+* **prefName:** `json.results.bindings[0].prefLabel.{value,xml:lang}`
+* **altNames:** `json.results.bindings[i].altLabel.{value,xml:lang}`
+* **geometry:** `json.results.bindings[0].{lat,long}.value`
+
+### getPlacesByBBox()
+
+**request:**
+* **url:** `http://vocab.getty.edu/sparql.json?query={SPARQL}`
+* **method:** `POST`
+* **response:** `application/sparql-results+json`
+
+**SPARQL:**
+
+```SQL
+PREFIX ontogeo: <http://www.ontotext.com/owlim/geo#>
+PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX tgn: <http://vocab.getty.edu/tgn/>
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+PREFIX gvp: <http://vocab.getty.edu/ontology#>
+PREFIX skosxl: <http://www.w3.org/2008/05/skos-xl#>
+PREFIX dc: <http://purl.org/dc/elements/1.1/>
+
+SELECT DISTINCT ?place ?prefLabel ?altLabel ?lat ?long ?id WHERE {
+  ?place skos:inScheme tgn: .
+  ?place dc:identifier ?id .
+  ?place foaf:focus [ontogeo:within("lowerleftLat" "lowerleftLon" "upperrightLat" "upperrightLon")].
+  ?place xl:prefLabel [skosxl:literalForm ?prefLabel] .
+  OPTIONAL { ?place xl:altLabel [skosxl:literalForm ?altLabel] }.
+  ?place foaf:focus ?p.
+  ?p geo:lat ?lat .
+  ?p geo:long ?long .
+}
+```
+
+**used attributes:**
+* **prefName:** `json.results.bindings[index,0].prefLabel.{value,xml:lang}`
+* **altNames:** `json.results.bindings[index,i].altLabel.{value,xml:lang}`
+* **geometry:** `json.results.bindings[index,0].{lat,long}.value`
+
+### getPlacesByString()
+
+**request:**
+* **url:** `http://vocab.getty.edu/sparql.json?query={SPARQL}`
+* **method:** `POST`
+* **response:** `application/sparql-results+json`
+
+**SPARQL:**
+
+```SQL
+PREFIX ontogeo: <http://www.ontotext.com/owlim/geo#>
+PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX tgn: <http://vocab.getty.edu/tgn/>
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+PREFIX gvp: <http://vocab.getty.edu/ontology#>
+PREFIX skosxl: <http://www.w3.org/2008/05/skos-xl#>
+PREFIX dc: <http://purl.org/dc/elements/1.1/>
+
+SELECT DISTINCT ?place ?prefLabel ?altLabel ?lat ?long ?id WHERE {
+  ?place skos:inScheme tgn: .
+  ?place dc:identifier ?id .
+  ?place luc:term 'searchString' .
+  ?place xl:prefLabel [skosxl:literalForm ?prefLabel] .
+  OPTIONAL { ?place xl:altLabel [skosxl:literalForm ?altLabel] }.
+  ?place foaf:focus ?p.
+  ?p geo:lat ?lat .
+  ?p geo:long ?long .
+} ORDER BY ASC(LCASE(STR(?Term)))
+```
+
+**used attributes:**
+* **prefName:** `json.results.bindings[index,0].prefLabel.{value,xml:lang}`
+* **altNames:** `json.results.bindings[index,i].altLabel.{value,xml:lang}`
+* **geometry:** `json.results.bindings[index,0].{lat,long}.value`
