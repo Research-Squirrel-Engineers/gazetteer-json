@@ -1,5 +1,7 @@
 # *Gazetteer JSON - How it works!*
 
+The lookup gazetteers used in this library are very heterogeneous. Some of them have an API, others a SPARQL endpoint. Moreover, the response is very different in formats (XML, JSON, etc.) and very different structured. This library focuses on harmonising all these gazetteers using [GeoJSON+](https://github.com/linkedgeodesy/geojson-plus).
+
 ## Index of Contents
 
 * [ChronOntology](#chronontology)
