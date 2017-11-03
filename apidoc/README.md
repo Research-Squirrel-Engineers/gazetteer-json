@@ -4,7 +4,7 @@
 
 GeoJSON einer ChronOntology Ressource.
 
-Die resultierende JSON-Struktur ist [hier](https://github.com/i3mainz/chronontology-spatialapi/blob/master/jsonobjects.md#chronontology-geojson) einsehbar.
+Die resultierende JSON-Struktur ist [hier](https://github.com/linkedgeodesy/geojson-plus/blob/master/datamodel.md#chronontology-geojson) einsehbar.
 
 ```java
 package run;
@@ -30,9 +30,9 @@ public class Main {
 
 ### Gazetteer Ressource
 
-GeoJSON einer Gazetteer Ressource (iDAI.gazetteer, GeoNames).
+GeoJSON einer Gazetteer Ressource (iDAI.gazetteer, GeoNames, GettyTGN und Pleiades).
 
-Die resultierende JSON-Struktur ist [hier](https://github.com/i3mainz/chronontology-spatialapi/blob/master/jsonobjects.md#gazetteer-ressource) einsehbar.
+Die resultierende JSON-Struktur ist [hier](https://github.com/linkedgeodesy/geojson-plus/blob/master/datamodel.md#gazetteer-ressource) einsehbar.
 
 ```java
 package run;
@@ -58,9 +58,9 @@ public class Main {
 
 ### Gazetteer Suche - Bounding Box
 
-GeoJSON einer Gazetteer Suche im iDAI.gazetteer, GeoNames.
+GeoJSON einer Gazetteer Suche im iDAI.gazetteer, GeoNames, GettyTGN und Pleiades.
 
-Die resultierende JSON-Struktur ist [hier](https://github.com/i3mainz/chronontology-spatialapi/blob/master/jsonobjects.md#gazetteer-suche) einsehbar.
+Die resultierende JSON-Struktur ist [hier](https://github.com/linkedgeodesy/geojson-plus/blob/master/datamodel.md#gazetteer-suche) einsehbar.
 
 ```java
 package run;
@@ -98,9 +98,9 @@ public class Main {
 
 ### Gazetteer Suche - Zeichenkette
 
-GeoJSON einer Gazetteer Suche im iDAI.gazetteer, GeoNames.
+GeoJSON einer Gazetteer Suche im iDAI.gazetteer, GeoNames, GettyTGN und Pleiades.
 
-Die resultierende JSON-Struktur ist [hier](https://github.com/i3mainz/chronontology-spatialapi/blob/master/jsonobjects.md#gazetteer-suche) einsehbar.
+Die resultierende JSON-Struktur ist [hier](https://github.com/linkedgeodesy/geojson-plus/blob/master/datamodel.md#gazetteer-suche) einsehbar.
 
 ```java
 package run;
