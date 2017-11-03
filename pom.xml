@@ -37,6 +37,14 @@
 		</developer>
 	</developers>
 	
+	<repositories>
+		<!-- add https://jitpack.io -->
+		<repository>
+			<id>jitpack.io</id>
+			<url>https://jitpack.io</url>
+		</repository>
+	</repositories>
+	
 	<profiles>
 		<profile>
 			<id>java8-doclint-disabled</id>
@@ -149,6 +157,12 @@
 			<groupId>info.debatty</groupId>
 			<artifactId>java-string-similarity</artifactId>
 			<version>RELEASE</version>
+		</dependency>
+		<!-- GitHub dependencies via https://jitpack.io - version: last commit number-->
+		<dependency>
+			<groupId>com.github.linkedgeodesy</groupId>
+			<artifactId>jena-ext</artifactId>
+			<version>v0.1</version>
 		</dependency>
 	</dependencies>
 	
