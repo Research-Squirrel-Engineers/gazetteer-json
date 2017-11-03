@@ -85,8 +85,6 @@ public class Pleiades {
             names.addPrefName("unknown", prefName);
             // get and add alternative names
             JSONArray namesArray = (JSONArray) jsonObject.get("names");
-            names.setName("unknown", new HashSet());
-            names.addSingleName("unknown", prefName);
             for (Object item : namesArray) {
                 String tmp = (String) item;
                 names.addSingleName("unknown", tmp);
@@ -129,8 +127,6 @@ public class Pleiades {
                     // get and add alternative names
                     JSONArray namesArray = (JSONArray) tmp.get("names");
                     if (namesArray != null) {
-                        names.setName("unknown", new HashSet());
-                        names.addSingleName("unknown", prefName);
                         for (Object item2 : namesArray) {
                             String tmp2 = (String) item2;
                             names.addSingleName("unknown", tmp2);
@@ -225,8 +221,6 @@ public class Pleiades {
                     // get and add alternative names
                     JSONArray namesArray = (JSONArray) tmp.get("names");
                     if (namesArray != null) {
-                        names.setName("unknown", new HashSet());
-                        names.addSingleName("unknown", prefName);
                         for (Object item2 : namesArray) {
                             String tmp2 = (String) item2;
                             names.addSingleName("unknown", tmp2);
