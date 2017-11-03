@@ -106,6 +106,4 @@ University of Applied Sciences, [Website](http://i3mainz.hs-mainz.de/)
 
 ## More Information
 
-This web service uses the [Gazetteer JSON](https://github.com/linkedgeodesy/gazetteer-json) library.
-
 The resulting JSON data structure is based on [GeoJSON+](https://github.com/linkedgeodesy/geojson-plus) and [GeoJSON+ Linked Data](https://github.com/linkedgeodesy/geojson-plus-ld).
