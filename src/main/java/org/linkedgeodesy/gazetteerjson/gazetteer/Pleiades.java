@@ -86,10 +86,10 @@ public class Pleiades {
             // get and add alternative names
             JSONArray namesArray = (JSONArray) jsonObject.get("names");
             names.setName("unknown", new HashSet());
-            names.addName("unknown", prefName);
+            names.addSingleName("unknown", prefName);
             for (Object item : namesArray) {
                 String tmp = (String) item;
-                names.addName("unknown", tmp);
+                names.addSingleName("unknown", tmp);
             }
             json.setGeometry(geometry);
             json.setProperties("https://pleiades.stoa.org/places/" + id, id, "pleiades", names);
@@ -130,10 +130,10 @@ public class Pleiades {
                     JSONArray namesArray = (JSONArray) tmp.get("names");
                     if (namesArray != null) {
                         names.setName("unknown", new HashSet());
-                        names.addName("unknown", prefName);
+                        names.addSingleName("unknown", prefName);
                         for (Object item2 : namesArray) {
                             String tmp2 = (String) item2;
-                            names.addName("unknown", tmp2);
+                            names.addSingleName("unknown", tmp2);
                         }
                     }
                     // get geom
@@ -226,10 +226,10 @@ public class Pleiades {
                     JSONArray namesArray = (JSONArray) tmp.get("names");
                     if (namesArray != null) {
                         names.setName("unknown", new HashSet());
-                        names.addName("unknown", prefName);
+                        names.addSingleName("unknown", prefName);
                         for (Object item2 : namesArray) {
                             String tmp2 = (String) item2;
-                            names.addName("unknown", tmp2);
+                            names.addSingleName("unknown", tmp2);
                         }
                     }
                     // get geom

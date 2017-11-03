@@ -78,7 +78,7 @@ public class GeoNames {
             }
             // add prefName to names array
             if (names.getNamesByLanguage("unknown") != null) {
-                names.addName("unknown", prefName);
+                names.addSingleName("unknown", prefName);
             } else {
                 HashSet hs = new HashSet();
                 hs.add(prefName);
@@ -136,7 +136,7 @@ public class GeoNames {
                 }
                 // add prefName to names array
                 if (names.getNamesByLanguage("unknown") != null) {
-                    names.addName("unknown", prefName);
+                    names.addSingleName("unknown", prefName);
                 } else {
                     HashSet hs = new HashSet();
                     hs.add(prefName);
@@ -210,7 +210,7 @@ public class GeoNames {
                 }
                 // add prefName to names array
                 if (names.getNamesByLanguage("unknown") != null) {
-                    names.addName("unknown", prefName);
+                    names.addSingleName("unknown", prefName);
                 } else {
                     HashSet hs = new HashSet();
                     hs.add(prefName);

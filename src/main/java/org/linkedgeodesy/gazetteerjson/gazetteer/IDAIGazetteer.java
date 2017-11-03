@@ -44,31 +44,18 @@ public class IDAIGazetteer {
             JSONObject jsonObject = (JSONObject) new JSONParser().parse(response.toString());
             JSONObject properties = (JSONObject) jsonObject.get("properties");
             NamesJSONObject names = new NamesJSONObject();
+            // set prefName
             JSONObject prefName = (JSONObject) properties.get("prefName");
             String titlePN = (String) prefName.get("title");
             String langPN = (String) prefName.get("language");
-            if (langPN != null) {
-                if (!langPN.equals("")) {
-                    names.addPrefName(langPN, titlePN);
-                } else {
-                    names.addPrefName("unknown", titlePN);
-                }
-            } else {
-                names.addPrefName("unknown", titlePN);
-            }
+            names.addPrefName(langPN, titlePN);
+            // set alter names
             JSONArray dainames = (JSONArray) properties.get("names");
             for (Object item : dainames) {
                 JSONObject tmp = (JSONObject) item;
-                if (tmp.get("language") != null && !tmp.get("language").equals("")) {
-                    HashSet hs = new HashSet();
-                    hs.add(tmp.get("title"));
-                    String lang = (String) tmp.get("language");
-                    names.setName(lang, hs);
-                } else {
-                    HashSet hs = new HashSet();
-                    hs.add(tmp.get("title"));
-                    names.setName("unknown", hs);
-                }
+                String titleTmp = (String) tmp.get("title");
+                String langTmp = (String) tmp.get("language");
+                names.addSingleName(langTmp, titleTmp);
             }
             json.setGeometry((JSONObject) jsonObject.get("geometry"));
             json.setProperties(uri, id, "dai", names);

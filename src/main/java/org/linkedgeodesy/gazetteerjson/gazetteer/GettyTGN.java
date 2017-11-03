@@ -115,7 +115,7 @@ public class GettyTGN {
                     altLabelLang = "unknown";
                 }
                 if (names.getNamesByLanguage(altLabelLang) != null) {
-                    names.addName(altLabelLang, altLabelString);
+                    names.addSingleName(altLabelLang, altLabelString);
                 } else {
                     HashSet hs = new HashSet();
                     hs.add(altLabelString);
@@ -250,7 +250,7 @@ public class GettyTGN {
                             altLabelLang = "unknown";
                         }
                         if (names.getNamesByLanguage(altLabelLang) != null) {
-                            names.addName(altLabelLang, altLabelString);
+                            names.addSingleName(altLabelLang, altLabelString);
                         } else {
                             HashSet hs = new HashSet();
                             hs.add(altLabelString);
@@ -386,7 +386,7 @@ public class GettyTGN {
                             altLabelLang = "unknown";
                         }
                         if (names.getNamesByLanguage(altLabelLang) != null) {
-                            names.addName(altLabelLang, altLabelString);
+                            names.addSingleName(altLabelLang, altLabelString);
                         } else {
                             HashSet hs = new HashSet();
                             hs.add(altLabelString);

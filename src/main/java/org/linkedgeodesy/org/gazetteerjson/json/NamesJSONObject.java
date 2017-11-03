@@ -29,6 +29,21 @@ public class NamesJSONObject extends JSONObject {
         }
         super.put(language, namesArray);
     }
+    
+    /**
+     * set multiple names for one language
+     *
+     * @param language
+     * @param names
+     */
+    public void addNameArray(String language, JSONArray namesArray) {
+        JSONArray tmp = (JSONArray) super.get(language);
+        if (tmp == null) {
+            tmp = namesArray;
+        }
+        tmp.add(namesArray);
+        super.put(language, tmp);
+    }
 
     /**
      * set an addition name to a language
@@ -36,9 +51,24 @@ public class NamesJSONObject extends JSONObject {
      * @param language
      * @param name
      */
-    public void addName(String language, String name) {
-        JSONArray tmp = (JSONArray) super.get(language);
-        tmp.add(name);
+    public void addSingleName(String language, String name) {
+        if (language == null) {
+            language = "unknown";
+        }
+        if (language.equals("")) {
+            language = "unknown";
+        }
+        JSONArray namesArray = (JSONArray) super.get(language);
+        if (namesArray == null) {
+            JSONArray tmp = new JSONArray();
+            tmp.add(name);
+            namesArray = tmp;
+        }
+        if (!namesArray.contains(name)) {
+            namesArray.add(name);
+        }
+        super.remove(language);
+        super.put(language, namesArray);
     }
 
     /**
@@ -52,10 +82,20 @@ public class NamesJSONObject extends JSONObject {
     }
     
     public void addPrefName(String language, String name) {
+        if (language == null) {
+            language = "unknown";
+        }
+        if (language.equals("")) {
+            language = "unknown";
+        }
         JSONObject prefName = new JSONObject();
         prefName.put("name", name);
         prefName.put("lang", language);
         super.put("prefName", prefName);
+        JSONArray namesArray = new JSONArray();
+        namesArray.add(name);
+        super.remove(language);
+        super.put(language, namesArray);
     }
 
 }
