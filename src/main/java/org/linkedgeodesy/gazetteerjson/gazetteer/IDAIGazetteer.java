@@ -47,7 +47,7 @@ public class IDAIGazetteer {
             NamesJSONObject names = new NamesJSONObject();
             for (Object item : dainames) {
                 JSONObject tmp = (JSONObject) item;
-                if (tmp.get("language") != null) {
+                if (tmp.get("language") != null && !tmp.get("language").equals("")) {
                     HashSet hs = new HashSet();
                     hs.add(tmp.get("title"));
                     String lang = (String) tmp.get("language");
@@ -98,7 +98,7 @@ public class IDAIGazetteer {
                 if (dainames != null) {
                     for (Object item2 : dainames) {
                         JSONObject tmp2 = (JSONObject) item2;
-                        if (tmp2.get("language") != null) {
+                        if (tmp2.get("language") != null && !tmp.get("language").equals("")) {
                             HashSet hs = new HashSet();
                             hs.add(tmp2.get("title"));
                             String lang = (String) tmp2.get("language");
@@ -166,7 +166,7 @@ public class IDAIGazetteer {
                 if (dainames != null) {
                     for (Object item2 : dainames) {
                         JSONObject tmp2 = (JSONObject) item2;
-                        if (tmp2.get("language") != null) {
+                        if (tmp2.get("language") != null && !tmp.get("language").equals("")) {
                             HashSet hs = new HashSet();
                             hs.add(tmp2.get("title"));
                             String lang = (String) tmp2.get("language");
