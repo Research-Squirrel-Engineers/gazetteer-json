@@ -1,7 +1,5 @@
 # *Gazetteer JSON - apidoc*
 
-## javadoc
-
 ## ChronOntology GeoJSON
 
 GeoJSON einer ChronOntology Ressource.
@@ -49,6 +47,8 @@ public class Main {
     try {
       IDAIGazetteer.getPlaceById("2181124");
       GeoNames.getPlaceById("2874225");
+      GettyTGN.getPlaceById("7004449");
+      Pleiades.getPlaceById("109169");
     } catch (Exception e) {
       System.out.println(Logging.getMessageJSON(e, "org.linkedgeodesy.gazetteerjson.run.Main").toJSONString());
     }
@@ -81,6 +81,14 @@ public class Main {
                                "49.903887", "8.161050",
                                "49.903887", "8.371850",
                                "50.082665", "8.371850");
+      GettyTGN.getPlacesByBBox("50.082665", "8.161050",
+                               "49.903887", "8.161050",
+                               "49.903887", "8.371850",
+                               "50.082665", "8.371850");
+      Pleiades.getPlacesByBBox("50.082665", "8.161050",
+                               "49.903887", "8.161050",
+                               "49.903887", "8.371850",
+                               "50.082665", "8.371850");
     } catch (Exception e) {
       System.out.println(Logging.getMessageJSON(e, "org.linkedgeodesy.gazetteerjson.run.Main").toJSONString());
     }
@@ -107,6 +115,8 @@ public class Main {
     try {
       IDAIGazetteer.getPlacesByString("Mainz");
       GeoNames.getPlacesByString("Mainz");
+      GettyTGN.getPlacesByString("Mainz");
+      Pleiades.getPlacesByString("Mainz");
     } catch (Exception e) {
       System.out.println(Logging.getMessageJSON(e, "org.linkedgeodesy.gazetteerjson.run.Main").toJSONString());
     }
