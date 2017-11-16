@@ -11,7 +11,7 @@ import org.linkedgeodesy.gazetteerjson.gazetteer.GeoNames;
 import org.linkedgeodesy.gazetteerjson.gazetteer.GettyTGN;
 import org.linkedgeodesy.gazetteerjson.gazetteer.IDAIGazetteer;
 import org.linkedgeodesy.gazetteerjson.gazetteer.Pleiades;
-import org.linkedgeodesy.org.gazetteerjson.json.GGeoJSONSingleFeature;
+import org.linkedgeodesy.org.gazetteerjson.json.JSONLD;
 
 /**
  * main class for running
@@ -58,12 +58,12 @@ public class Main {
             o.add(Pleiades.getPlacesByBBox("50.082665", "8.161050", "49.903887", "8.161050", "49.903887", "8.371850", "50.082665", "8.371850").toJSONString() + "\r\n");
             o.add("# Pleiades.getPlacesByString" + "\r\n");
             o.add(Pleiades.getPlacesByString("Mainz").toJSONString() + "\r\n");
-            o.add("# getJSONLD" + "\r\n");
-            o.add(GGeoJSONSingleFeature.getJSONLD(GeoNames.getPlaceById("2874225")).toJSONString() + "\r\n");
-            o.add("# getJSONLD" + "\r\n");
-            o.add(GGeoJSONSingleFeature.getJSONLD(IDAIGazetteer.getPlaceById("2181124")).toJSONString() + "\r\n");
-            o.add("# getJSONLD2" + "\r\n");
-            o.add(GGeoJSONSingleFeature.getJSONLD2(GettyTGN.getPlacesByBBox("48.866667", "2.333333", "48.866667", "2.333333", "48.866667", "2.333333", "48.866667", "2.333333")).toJSONString() + "\r\n");
+            o.add("# JSONLD.getJSONLDGazetteerResource" + "\r\n");
+            o.add(JSONLD.getJSONLDGazetteerResource(GeoNames.getPlaceById("2874225")).toJSONString() + "\r\n");
+            o.add("# JSONLD.getJSONLDGazetteerResource" + "\r\n");
+            o.add(JSONLD.getJSONLDGazetteerResource(IDAIGazetteer.getPlaceById("2181124")).toJSONString() + "\r\n");
+            o.add("# JSONLD.getJSONLDGazetteerSearch" + "\r\n");
+            o.add(JSONLD.getJSONLDGazetteerSearch(GettyTGN.getPlacesByBBox("48.866667", "2.333333", "48.866667", "2.333333", "48.866667", "2.333333", "48.866667", "2.333333")).toJSONString() + "\r\n");
             FileOutput.writeFile(o);
         } catch (Exception e) {
             System.out.println(Logging.getMessageJSON(e, "org.linkedgeodesy.gazetteerjson.run.Main").toJSONString());
