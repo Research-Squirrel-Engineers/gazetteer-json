@@ -128,4 +128,72 @@ public class GGeoJSONSingleFeature extends JSONObject {
         }
     }
 
+    public static JSONObject getJSONLD2(JSONObject json) throws IOException {
+        try {
+            JSONObject jsonld = new JSONObject();
+            // read GeoJSON-LD Context
+            JSONObject data = new JSONObject();
+            URL obj = new URL("https://raw.githubusercontent.com/linkedgeodesy/geojson-plus-ld/master/geojson-context-lg.jsonld");
+            HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+            con.setRequestMethod("GET");
+            if (con.getResponseCode() == 200) {
+                BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream(), "UTF-8"));
+                String inputLine;
+                StringBuilder response = new StringBuilder();
+                while ((inputLine = in.readLine()) != null) {
+                    response.append(inputLine);
+                }
+                in.close();
+                data = (JSONObject) new JSONParser().parse(response.toString());
+            }
+            // get context
+            JSONObject context = (JSONObject) data.get("@context");
+            // get features
+            JSONArray features = (JSONArray) json.get("features");
+            JSONArray newfeatures = new JSONArray();
+            for (Object feature : features) {
+                JSONObject tmpfeature = (JSONObject) feature;
+                JSONObject newfeature = (JSONObject) feature;
+                JSONObject properties = (JSONObject) tmpfeature.get("properties");
+                // get and transform names
+                JSONObject names = (JSONObject) properties.get("names");
+                JSONArray namesLD = new JSONArray();
+                for (Iterator iterator = names.keySet().iterator(); iterator.hasNext();) {
+                    String key = (String) iterator.next();
+                    if (key.equals("prefName")) {
+                        JSONObject prefName = (JSONObject) names.get("prefName");
+                        properties.put("prefName", prefName.get("name") + "@" + prefName.get("lang"));
+                    } else {
+                        JSONArray tmp = (JSONArray) names.get(key);
+                        for (Object item : tmp) {
+                            String thisItem = (String) item;
+                            namesLD.add(thisItem + "@" + key);
+                        }
+                    }
+                }
+                properties.remove("names");
+                properties.put("names", namesLD);
+                // transform id
+                String id = (String) properties.get("@id");
+                properties.remove("@id");
+                // set new feature
+                newfeature.put("type", tmpfeature.get("type"));
+                newfeature.put("id", id);
+                newfeature.put("geometry", tmpfeature.get("geometry"));
+                newfeature.put("properties", properties);
+                newfeatures.add(newfeature);
+            }
+            System.out.println(newfeatures);
+            // write JSONLD
+            jsonld.put("@context", context);
+            jsonld.put("type", json.get("type"));
+            jsonld.put("features", newfeatures);
+            jsonld.put("metadata", json.get("metadata"));
+            // output
+            return jsonld;
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
 }

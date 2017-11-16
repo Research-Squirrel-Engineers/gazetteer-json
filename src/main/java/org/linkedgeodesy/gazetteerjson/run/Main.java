@@ -62,6 +62,8 @@ public class Main {
             o.add(GGeoJSONSingleFeature.getJSONLD(GeoNames.getPlaceById("2874225")).toJSONString() + "\r\n");
             o.add("# getJSONLD" + "\r\n");
             o.add(GGeoJSONSingleFeature.getJSONLD(IDAIGazetteer.getPlaceById("2181124")).toJSONString() + "\r\n");
+            o.add("# getJSONLD2" + "\r\n");
+            o.add(GGeoJSONSingleFeature.getJSONLD2(GettyTGN.getPlacesByBBox("48.866667", "2.333333", "48.866667", "2.333333", "48.866667", "2.333333", "48.866667", "2.333333")).toJSONString() + "\r\n");
             FileOutput.writeFile(o);
         } catch (Exception e) {
             System.out.println(Logging.getMessageJSON(e, "org.linkedgeodesy.gazetteerjson.run.Main").toJSONString());
