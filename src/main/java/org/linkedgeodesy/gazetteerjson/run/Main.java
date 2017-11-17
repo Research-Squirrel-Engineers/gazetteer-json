@@ -65,9 +65,30 @@ public class Main {
             o.add("# JSONLD.getJSONLDGazetteerSearch" + "\r\n");
             o.add(JSONLD.getJSONLDGazetteerSearch(GettyTGN.getPlacesByBBox("48.866667", "2.333333", "48.866667", "2.333333", "48.866667", "2.333333", "48.866667", "2.333333")).toJSONString() + "\r\n");
             o.add("# JSONLD.getJSONLDChronOntologyJSON" + "\r\n");
-            System.out.println(JSONLD.getRDF(JSONLD.getJSONLDGazetteerResource(IDAIGazetteer.getPlaceById("2181124")).toString(), "Turtle"));
-            System.out.println(JSONLD.getRDF(JSONLD.getJSONLDGazetteerSearch(Pleiades.getPlacesByString("Mainz")).toJSONString(), "Turtle"));
-            System.out.println(JSONLD.getRDF(JSONLD.getJSONLDChronOntologyJSON(ChronOntology.getPlacesById("EfFq8qCFODK8")).toString(), "Turtle"));
+            
+            //System.out.println(JSONLD.getRDF(JSONLD.getJSONLDGazetteerResource(IDAIGazetteer.getPlaceById("2181124")).toString(), "TURTLE"));
+            //System.out.println(JSONLD.getRDF(JSONLD.getJSONLDGazetteerResource(IDAIGazetteer.getPlaceById("2181124")).toString(), "N-TRIPLES"));
+            //System.out.println(JSONLD.getRDF(JSONLD.getJSONLDGazetteerResource(IDAIGazetteer.getPlaceById("2181124")).toString(), "JSON-LD"));
+            //System.out.println(JSONLD.getRDF(JSONLD.getJSONLDGazetteerResource(IDAIGazetteer.getPlaceById("2181124")).toString(), "RDF/XML"));
+            //System.out.println(JSONLD.getRDF(JSONLD.getJSONLDGazetteerResource(IDAIGazetteer.getPlaceById("2181124")).toString(), "N3"));
+            //System.out.println(JSONLD.getRDF(JSONLD.getJSONLDGazetteerResource(IDAIGazetteer.getPlaceById("2181124")).toString(), "RDF/JSON"));
+            
+            //System.out.println(JSONLD.getRDF(JSONLD.getJSONLDGazetteerResource(GeoNames.getPlaceById("2874225")).toString(), "TURTLE"));
+            //System.out.println(JSONLD.getRDF(JSONLD.getJSONLDGazetteerResource(GeoNames.getPlaceById("2874225")).toString(), "N-TRIPLES"));
+            //System.out.println(JSONLD.getRDF(JSONLD.getJSONLDGazetteerResource(GeoNames.getPlaceById("2874225")).toString(), "JSON-LD"));
+            //System.out.println(JSONLD.getRDF(JSONLD.getJSONLDGazetteerResource(GeoNames.getPlaceById("2874225")).toString(), "RDF/XML"));
+            //System.out.println(JSONLD.getRDF(JSONLD.getJSONLDGazetteerResource(GeoNames.getPlaceById("2874225")).toString(), "N3"));
+            //System.out.println(JSONLD.getRDF(JSONLD.getJSONLDGazetteerResource(GeoNames.getPlaceById("2874225")).toString(), "RDF/JSON"));
+            
+            //System.out.println(JSONLD.getRDF(JSONLD.getJSONLDGazetteerResource(GettyTGN.getPlaceById("7008038")).toString(), "TURTLE"));
+            //System.out.println(JSONLD.getRDF(JSONLD.getJSONLDGazetteerResource(GettyTGN.getPlaceById("7008038")).toString(), "N-TRIPLES"));
+            //System.out.println(JSONLD.getRDF(JSONLD.getJSONLDGazetteerResource(GettyTGN.getPlaceById("7008038")).toString(), "JSON-LD"));
+            //System.out.println(JSONLD.getRDF(JSONLD.getJSONLDGazetteerResource(GettyTGN.getPlaceById("7008038")).toString(), "RDF/XML"));
+            //System.out.println(JSONLD.getRDF(JSONLD.getJSONLDGazetteerResource(GettyTGN.getPlaceById("7008038")).toString(), "N3"));
+            //System.out.println(JSONLD.getRDF(JSONLD.getJSONLDGazetteerResource(GettyTGN.getPlaceById("7008038")).toString(), "RDF/JSON"));
+            
+            //System.out.println(JSONLD.getRDF(JSONLD.getJSONLDGazetteerSearch(Pleiades.getPlacesByString("Mainz")).toJSONString(), "Turtle"));
+            //System.out.println(JSONLD.getRDF(JSONLD.getJSONLDChronOntologyJSON(ChronOntology.getPlacesById("EfFq8qCFODK8")).toString(), "Turtle"));
             FileOutput.writeFile(o);
         } catch (Exception e) {
             System.out.println(Logging.getMessageJSON(e, "org.linkedgeodesy.gazetteerjson.run.Main").toJSONString());
