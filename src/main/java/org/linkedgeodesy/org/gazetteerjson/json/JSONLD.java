@@ -9,6 +9,8 @@ import java.util.Iterator;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
+import org.linkedgeodesy.jenaext.log.JenaModelException;
+import org.linkedgeodesy.jenaext.model.JenaModel;
 
 /**
  * JSONObject to transform JSON to JSON-LD
@@ -202,7 +204,7 @@ public class JSONLD {
             JSONObject metadata = (JSONObject) json.get("metadata");
             JSONObject newmetadata = new JSONObject();
             newmetadata.put("coverage", metadata.get("coverage"));
-            newmetadata.put("@id", metadata.get("@id"));
+            newmetadata.put("id", metadata.get("@id"));
             newmetadata.put("periodid", metadata.get("periodid"));
             JSONObject names = (JSONObject) metadata.get("names");
             JSONArray namesLD = new JSONArray();
@@ -222,11 +224,18 @@ public class JSONLD {
             jsonld.put("type", json.get("type"));
             jsonld.put("features", newfeatures);
             jsonld.put("metadata", newmetadata);
+            jsonld.put("id", newmetadata.get("id"));
             // output
             return jsonld;
         } catch (Exception e) {
             return null;
         }
+    }
+    
+    public static String getRDF(String jsonld, String format) throws IOException, JenaModelException {
+        JenaModel jm = new JenaModel();
+        jm.readJSONLD(jsonld);
+        return jm.getModelAsRDFFormatedString(format);
     }
     
 }
