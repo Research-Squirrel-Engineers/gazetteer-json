@@ -64,6 +64,8 @@ public class Main {
             o.add(JSONLD.getJSONLDGazetteerResource(IDAIGazetteer.getPlaceById("2181124")).toJSONString() + "\r\n");
             o.add("# JSONLD.getJSONLDGazetteerSearch" + "\r\n");
             o.add(JSONLD.getJSONLDGazetteerSearch(GettyTGN.getPlacesByBBox("48.866667", "2.333333", "48.866667", "2.333333", "48.866667", "2.333333", "48.866667", "2.333333")).toJSONString() + "\r\n");
+            o.add("# JSONLD.getJSONLDChronOntologyJSON" + "\r\n");
+            o.add(JSONLD.getJSONLDChronOntologyJSON(ChronOntology.getPlacesById("EfFq8qCFODK8")).toJSONString() + "\r\n");
             FileOutput.writeFile(o);
         } catch (Exception e) {
             System.out.println(Logging.getMessageJSON(e, "org.linkedgeodesy.gazetteerjson.run.Main").toJSONString());

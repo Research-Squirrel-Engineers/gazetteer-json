@@ -193,17 +193,35 @@ public class JSONLD {
                 properties.remove("@id");
                 // set new feature
                 newfeature.put("type", tmpfeature.get("type"));
-                newfeature.put("id", id);
+                newfeature.put("gazetteeruri", id);
                 newfeature.put("geometry", tmpfeature.get("geometry"));
                 newfeature.put("properties", properties);
                 newfeatures.add(newfeature);
             }
-            System.out.println(newfeatures);
+            // get and transform metadata
+            JSONObject metadata = (JSONObject) json.get("metadata");
+            JSONObject newmetadata = new JSONObject();
+            newmetadata.put("coverage", metadata.get("coverage"));
+            newmetadata.put("@id", metadata.get("@id"));
+            newmetadata.put("periodid", metadata.get("periodid"));
+            JSONObject names = (JSONObject) metadata.get("names");
+            JSONArray namesLD = new JSONArray();
+            for (Iterator iterator = names.keySet().iterator(); iterator.hasNext();) {
+                String key = (String) iterator.next();
+                JSONArray tmp = (JSONArray) names.get(key);
+                for (Object item : tmp) {
+                    String thisItem = (String) item;
+                    namesLD.add(thisItem + "@" + key);
+                }
+            }
+            newmetadata.put("names", namesLD); 
+            newmetadata.put("chronontology", metadata.get("@id"));
+            newmetadata.put("when", metadata.get("when").toString());
             // write JSONLD
             jsonld.put("@context", context);
             jsonld.put("type", json.get("type"));
             jsonld.put("features", newfeatures);
-            jsonld.put("metadata", json.get("metadata"));
+            jsonld.put("metadata", newmetadata);
             // output
             return jsonld;
         } catch (Exception e) {
