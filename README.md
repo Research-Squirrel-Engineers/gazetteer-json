@@ -2,7 +2,7 @@
 
 A Library for Gazetteer JSON access.
 
-[![build](https://api.travis-ci.org/linkedgeodesy/gazetteer-json.svg?branch=master)](https://travis-ci.org/linkedgeodesy/gazetteer-json) [![version](https://img.shields.io/badge/version-1.0--SNAPSHOT-green.svg)](#) [![release](https://img.shields.io/badge/release-v0.7-lightgrey.svg)](https://github.com/i3mainz/chronontology-spatialapi/releases/tag/v0.7)  [![java](https://img.shields.io/badge/jdk-1.8-red.svg)](#)  [![maven](https://img.shields.io/badge/maven-3.5.0-orange.svg)](#) [![output](https://img.shields.io/badge/output-jar-red.svg)](#)  [![docs](https://img.shields.io/badge/apidoc-v0.4-blue.svg)](https://linkedgeodesy.github.io/gazetteer-json/) [![tests](https://img.shields.io/badge/tests-report-yellowgreen.svg)](https://linkedgeodesy.github.io/gazetteer-json/surefire-report.html)   [![license](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/linkedgeodesy/gazetteer-json/blob/master/LICENSE)
+[![build](https://api.travis-ci.org/linkedgeodesy/gazetteer-json.svg?branch=master)](https://travis-ci.org/linkedgeodesy/gazetteer-json) [![version](https://img.shields.io/badge/version-1.0--SNAPSHOT-green.svg)](#) [![release](https://img.shields.io/badge/release-v0.5-lightgrey.svg)](https://github.com/linkedgeodesy/gazetteer-json/releases/tag/v0.5)  [![java](https://img.shields.io/badge/jdk-1.8-red.svg)](#)  [![maven](https://img.shields.io/badge/maven-3.5.0-orange.svg)](#) [![output](https://img.shields.io/badge/output-jar-red.svg)](#)  [![docs](https://img.shields.io/badge/apidoc-v0.5-blue.svg)](https://linkedgeodesy.github.io/gazetteer-json/) [![tests](https://img.shields.io/badge/tests-report-yellowgreen.svg)](https://linkedgeodesy.github.io/gazetteer-json/surefire-report.html)   [![license](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/linkedgeodesy/gazetteer-json/blob/master/LICENSE)
 
 ## Prerequisites
 
@@ -47,7 +47,7 @@ Look at [Gist](https://gist.github.com/florianthiery/0f8c0c015555939c96eb13428bb
 
 ## Dependency Information
 
-*latest stabile version: v0.1*
+*latest stabile version: v0.5*
 
 **Apache Maven** *via jitpack.io*
 
