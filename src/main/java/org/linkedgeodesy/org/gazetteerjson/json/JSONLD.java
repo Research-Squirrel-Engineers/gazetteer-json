@@ -48,13 +48,11 @@ public class JSONLD {
                 String key = (String) iterator.next();
                 if (key.equals("prefName")) {
                     JSONObject prefName = (JSONObject) names.get("prefName");
-                    //System.out.println("prefName: " + prefName.get("name") + "@" + prefName.get("lang"));
                     properties.put("prefName", prefName.get("name") + "@" + prefName.get("lang"));
                 } else {
                     JSONArray tmp = (JSONArray) names.get(key);
                     for (Object item : tmp) {
                         String thisItem = (String) item;
-                        //System.out.println(thisItem + "@" + key);
                         namesLD.add(thisItem + "@" + key);
                     }
                 }
@@ -132,7 +130,6 @@ public class JSONLD {
                 newfeature.put("properties", properties);
                 newfeatures.add(newfeature);
             }
-            System.out.println(newfeatures);
             // write JSONLD
             jsonld.put("@context", context);
             jsonld.put("type", json.get("type"));

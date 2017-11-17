@@ -65,7 +65,9 @@ public class Main {
             o.add("# JSONLD.getJSONLDGazetteerSearch" + "\r\n");
             o.add(JSONLD.getJSONLDGazetteerSearch(GettyTGN.getPlacesByBBox("48.866667", "2.333333", "48.866667", "2.333333", "48.866667", "2.333333", "48.866667", "2.333333")).toJSONString() + "\r\n");
             o.add("# JSONLD.getJSONLDChronOntologyJSON" + "\r\n");
-            o.add(JSONLD.getJSONLDChronOntologyJSON(ChronOntology.getPlacesById("EfFq8qCFODK8")).toJSONString() + "\r\n");
+            System.out.println(JSONLD.getRDF(JSONLD.getJSONLDGazetteerResource(IDAIGazetteer.getPlaceById("2181124")).toString(), "Turtle"));
+            System.out.println(JSONLD.getRDF(JSONLD.getJSONLDGazetteerSearch(Pleiades.getPlacesByString("Mainz")).toJSONString(), "Turtle"));
+            System.out.println(JSONLD.getRDF(JSONLD.getJSONLDChronOntologyJSON(ChronOntology.getPlacesById("EfFq8qCFODK8")).toString(), "Turtle"));
             FileOutput.writeFile(o);
         } catch (Exception e) {
             System.out.println(Logging.getMessageJSON(e, "org.linkedgeodesy.gazetteerjson.run.Main").toJSONString());
