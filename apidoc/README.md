@@ -11,7 +11,6 @@ package run;
 
 import org.linkedgeodesy.gazetteerjson.log.Logging;
 import org.linkedgeodesy.gazetteerjson.gazetteer.ChronOntology;
-import org.linkedgeodesy.gazetteerjson.gazetteer.IDAIGazetteer;
 import java.io.IOException;
 import java.sql.SQLException;
 
@@ -38,7 +37,10 @@ Die resultierende JSON-Struktur ist [hier](https://github.com/linkedgeodesy/geoj
 package run;
 
 import org.linkedgeodesy.gazetteerjson.log.Logging;
+import org.linkedgeodesy.gazetteerjson.gazetteer.GeoNames;
+import org.linkedgeodesy.gazetteerjson.gazetteer.GettyTGN;
 import org.linkedgeodesy.gazetteerjson.gazetteer.IDAIGazetteer;
+import org.linkedgeodesy.gazetteerjson.gazetteer.Pleiades;
 import java.io.IOException;
 import java.sql.SQLException;
 
@@ -66,7 +68,10 @@ Die resultierende JSON-Struktur ist [hier](https://github.com/linkedgeodesy/geoj
 package run;
 
 import org.linkedgeodesy.gazetteerjson.log.Logging;
+import org.linkedgeodesy.gazetteerjson.gazetteer.GeoNames;
+import org.linkedgeodesy.gazetteerjson.gazetteer.GettyTGN;
 import org.linkedgeodesy.gazetteerjson.gazetteer.IDAIGazetteer;
+import org.linkedgeodesy.gazetteerjson.gazetteer.Pleiades;
 import java.io.IOException;
 import java.sql.SQLException;
 
@@ -106,7 +111,10 @@ Die resultierende JSON-Struktur ist [hier](https://github.com/linkedgeodesy/geoj
 package run;
 
 import org.linkedgeodesy.gazetteerjson.log.Logging;
+import org.linkedgeodesy.gazetteerjson.gazetteer.GeoNames;
+import org.linkedgeodesy.gazetteerjson.gazetteer.GettyTGN;
 import org.linkedgeodesy.gazetteerjson.gazetteer.IDAIGazetteer;
+import org.linkedgeodesy.gazetteerjson.gazetteer.Pleiades;
 import java.io.IOException;
 import java.sql.SQLException;
 
@@ -117,6 +125,50 @@ public class Main {
       GeoNames.getPlacesByString("Mainz");
       GettyTGN.getPlacesByString("Mainz");
       Pleiades.getPlacesByString("Mainz");
+    } catch (Exception e) {
+      System.out.println(Logging.getMessageJSON(e, "org.linkedgeodesy.gazetteerjson.run.Main").toJSONString());
+    }
+  }
+}
+```
+
+### Linked Data
+
+```java
+package run;
+
+import org.linkedgeodesy.gazetteerjson.log.Logging;
+import java.io.IOException;
+import java.sql.SQLException;
+import org.linkedgeodesy.org.gazetteerjson.json.JSONLD;
+
+public class Main {
+  public static void main(String[] args) throws IOException, SQLException {
+    try {
+      JSONLD.getJSONLDGazetteerResource(json);
+      JSONLD.getJSONLDChronOntologyJSON(json);
+      JSONLD.getJSONLDGazetteerSearch(json);
+    } catch (Exception e) {
+      System.out.println(Logging.getMessageJSON(e, "org.linkedgeodesy.gazetteerjson.run.Main").toJSONString());
+    }
+  }
+}
+```
+
+```java
+package run;
+
+import org.linkedgeodesy.gazetteerjson.log.Logging;
+import java.io.IOException;
+import java.sql.SQLException;
+import org.linkedgeodesy.org.gazetteerjson.json.JSONLD;
+
+public class Main {
+  public static void main(String[] args) throws IOException, SQLException {
+    try {
+      JSONLD.getRDF(JSONLD.getJSONLDGazetteerResource(json), format);
+      JSONLD.getRDF(JSONLD.getJSONLDChronOntologyJSON(json), format);
+      JSONLD.getRDF(JSONLD.getJSONLDGazetteerSearch(json), format);
     } catch (Exception e) {
       System.out.println(Logging.getMessageJSON(e, "org.linkedgeodesy.gazetteerjson.run.Main").toJSONString());
     }
