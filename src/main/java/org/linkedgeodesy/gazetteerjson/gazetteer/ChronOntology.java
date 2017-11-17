@@ -50,13 +50,22 @@ public class ChronOntology {
             JSONArray isNamedAfter = (JSONArray) resource.get("isNamedAfter");
             JSONArray coverage = new JSONArray();
             if (spatiallyPartOfRegion != null) {
-                coverage.add(spatiallyPartOfRegion);
+                for (Object tmp : spatiallyPartOfRegion) {
+                    String item = (String) tmp;
+                    coverage.add(item);
+                }
             }
             if (hasCoreArea != null) {
-                coverage.add(hasCoreArea);
+                for (Object tmp : hasCoreArea) {
+                    String item = (String) tmp;
+                    coverage.add(item);
+                }
             }
             if (isNamedAfter != null) {
-                coverage.add(isNamedAfter);
+                for (Object tmp : isNamedAfter) {
+                    String item = (String) tmp;
+                    coverage.add(item);
+                }
             }
             for (String item : TYPES) {
                 JSONArray spatial = (JSONArray) resource.get(item);
