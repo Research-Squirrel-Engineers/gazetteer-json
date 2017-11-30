@@ -50,11 +50,13 @@ public class IDAIGazetteer {
             names.addPrefName(langPN, titlePN);
             // set alter names
             JSONArray dainames = (JSONArray) properties.get("names");
-            for (Object item : dainames) {
-                JSONObject tmp = (JSONObject) item;
-                String titleTmp = (String) tmp.get("title");
-                String langTmp = (String) tmp.get("language");
-                names.addSingleName(langTmp, titleTmp);
+            if (dainames != null) {
+                for (Object item : dainames) {
+                    JSONObject tmp = (JSONObject) item;
+                    String titleTmp = (String) tmp.get("title");
+                    String langTmp = (String) tmp.get("language");
+                    names.addSingleName(langTmp, titleTmp);
+                }
             }
             json.setGeometry((JSONObject) jsonObject.get("geometry"));
             json.setProperties(uri, id, "dai", names);
