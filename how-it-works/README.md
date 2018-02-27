@@ -233,7 +233,7 @@ Query Pleiades using the [Pelagios Peripleo API](https://github.com/pelagios/per
 ### getPlaceById()
 
 **request:**
-* **url:** `http://pelagios.org/peripleo/places/http:%2F%2Fpleiades.stoa.org%2Fplaces%2F:id`
+* **url:** `http://peripleo.pelagios.org/peripleo/places/http:%2F%2Fpleiades.stoa.org%2Fplaces%2F:id`
 * **method:** `GET`
 * **response:** `JSON`
 
@@ -245,7 +245,7 @@ Query Pleiades using the [Pelagios Peripleo API](https://github.com/pelagios/per
 ### getPlacesByBBox()
 
 **request:**
-* **url:** `http://pelagios.org/peripleo/search?bbox=upperleftLon,lowerleftLon,upperrightLat,upperleftLat&types=place&limit=10000`
+* **url:** `http://peripleo.pelagios.org/peripleo/search?bbox=upperleftLon,lowerleftLon,upperrightLat,upperleftLat&types=place&limit=10000`
 * **method:** `GET`
 * **response:** `JSON`
 
@@ -257,7 +257,7 @@ Query Pleiades using the [Pelagios Peripleo API](https://github.com/pelagios/per
 ### getPlacesByString()
 
 **request:**
-* **url:** `http://pelagios.org/peripleo/search?query={searchString}&types=place&limit=250`
+* **url:** `http://peripleo.pelagios.org/peripleo/search?query={searchString}&types=place&limit=250`
 * **method:** `GET`
 * **response:** `JSON`
 

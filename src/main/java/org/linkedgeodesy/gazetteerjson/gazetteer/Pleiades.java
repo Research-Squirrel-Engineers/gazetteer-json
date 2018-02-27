@@ -25,7 +25,7 @@ public class Pleiades {
 
     public static GGeoJSONSingleFeature getPlaceById(String id) throws IOException, ParseException {
         GGeoJSONSingleFeature json = new GGeoJSONSingleFeature();
-        String uri = "http://pelagios.org/peripleo/places/http:%2F%2Fpleiades.stoa.org%2Fplaces%2F" + id;
+        String uri = "http://peripleo.pelagios.org/peripleo/places/http:%2F%2Fpleiades.stoa.org%2Fplaces%2F" + id;
         URL url = new URL(uri);
         HttpURLConnection con = (HttpURLConnection) url.openConnection();
         con.setRequestMethod("GET");
@@ -97,7 +97,7 @@ public class Pleiades {
     public static GGeoJSONFeatureCollection getPlacesByBBox(String upperleftLat, String upperleftLon, String upperrightLat, String upperrightLon,
                                                             String lowerrightLat, String lowerrightLon, String lowerleftLat, String lowerleftLon) throws IOException, ParseException {
         GGeoJSONFeatureCollection json = new GGeoJSONFeatureCollection();
-        String uri = "http://pelagios.org/peripleo/search?bbox=" + upperleftLon + "," + lowerleftLon + "," + upperrightLat + "," + upperleftLat + "&types=place&limit=10000";
+        String uri = "http://peripleo.pelagios.org/peripleo/search?bbox=" + upperleftLon + "," + lowerleftLon + "," + upperrightLat + "," + upperleftLat + "&types=place&limit=10000";
         URL url = new URL(uri);
         HttpURLConnection con = (HttpURLConnection) url.openConnection();
         con.setRequestMethod("GET");
@@ -191,7 +191,7 @@ public class Pleiades {
 
     public static GGeoJSONFeatureCollection getPlacesByString(String searchString) throws IOException, ParseException {
         GGeoJSONFeatureCollection json = new GGeoJSONFeatureCollection();
-        String uri = "http://pelagios.org/peripleo/search?query=" + searchString + "&types=place&limit=250";
+        String uri = "http://peripleo.pelagios.org/peripleo/search?query=" + searchString + "&types=place&limit=250";
         URL url = new URL(uri);
         HttpURLConnection con = (HttpURLConnection) url.openConnection();
         con.setRequestMethod("GET");
