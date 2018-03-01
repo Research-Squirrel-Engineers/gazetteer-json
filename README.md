@@ -97,12 +97,15 @@ libraryDependencies += "com.github.linkedgeodesy" % "gazetteer-json" % "${versio
 
 ## Developers and License Holder
 
-Florian Thiery M.Sc.<sup>1</sup>, i3mainz<sup>2</sup>
+Florian Thiery<sup>1</sup>, i3mainz<sup>2</sup>, RGZM<sup>2</sup>
 
-<sup>1</sup> Florian Thiery M.Sc., [Linked Geodesy](http://linkedgeodesy.org), [ORCID](http://orcid.org/0000-0002-3246-3531)
+<sup>1</sup> Florian Thiery M.Sc., [`ORCID:0000-0002-3246-3531`](http://orcid.org/0000-0002-3246-3531)
 
 <sup>2</sup> i3mainz - Institute for Spatial Information and Surveying Technology at School of Technology, Hochschule Mainz
-University of Applied Sciences, [Website](http://i3mainz.hs-mainz.de/)
+University of Applied Sciences ([`Website`](http://i3mainz.hs-mainz.de/))
+
+<sup>3</sup> Römisch-Germanisches Zentralmuseum Mainz, Leibniz-Forschungsinstitut für Archäologie
+University of Applied Sciences ([`Website`](http://rgzm.de/))
 
 ## More Information
 
