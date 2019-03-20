@@ -46,7 +46,7 @@ public class ChronOntologyTest {
         String id = (String) metadataObj.get("@id");
         String periodid = (String) metadataObj.get("periodid");
         JSONObject chronontology = (JSONObject) metadataObj.get("chronontology");
-        assertEquals(id,"http://chronontology.dainst.org/period/EfFq8qCFODK8");
+        assertEquals(id,"https://chronontology.dainst.org/period/EfFq8qCFODK8");
         assertEquals(periodid,"EfFq8qCFODK8");
         assertNotSame(chronontology,new JSONObject());
     }

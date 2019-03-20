@@ -27,7 +27,7 @@ public class ChronOntology {
         CGeoJSONFeatureCollection json = new CGeoJSONFeatureCollection();
         // init output
         // get data from chronontology
-        String url = "http://chronontology.dainst.org/data/period/" + id;
+        String url = "https://chronontology.dainst.org/data/period/" + id;
         URL obj = new URL(url);
         HttpURLConnection con = (HttpURLConnection) obj.openConnection();
         con.setRequestMethod("GET");
