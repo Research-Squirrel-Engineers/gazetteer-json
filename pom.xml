@@ -166,6 +166,23 @@
 		</dependency>
 	</dependencies>
 	
+	<repository>
+      <id>gitlab-maven</id>
+      <url>https://gitlab.rlp.net/api/v4/projects/8267/packages/maven</url>
+    </repository>
+  </repositories>
+  <distributionManagement>
+    <repository>
+      <id>gitlab-maven</id>
+      <url>https://gitlab.rlp.net/api/v4/projects/8267/packages/maven</url>
+    </repository>
+    <snapshotRepository>
+      <id>gitlab-maven</id>
+      <url>https://gitlab.rlp.net/api/v4/projects/8267/packages/maven</url>
+    </snapshotRepository>
+  </distributionManagement>
+
+	
 	<reporting>
 		<plugins>
 			<!-- http://maven.apache.org/surefire/maven-surefire-report-plugin -->
