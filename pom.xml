@@ -165,7 +165,7 @@
 			<version>v0.1</version>
 		</dependency>
 	</dependencies>
-	
+	<repositories>
 	<repository>
       <id>gitlab-maven</id>
       <url>https://gitlab.rlp.net/api/v4/projects/8267/packages/maven</url>
