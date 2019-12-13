@@ -37,13 +37,6 @@
 		</developer>
 	</developers>
 	
-	<repositories>
-		<!-- add https://jitpack.io -->
-		<repository>
-			<id>jitpack.io</id>
-			<url>https://jitpack.io</url>
-		</repository>
-	</repositories>
 	
 	<profiles>
 		<profile>
@@ -170,6 +163,10 @@
       <id>gitlab-maven</id>
       <url>https://gitlab.rlp.net/api/v4/projects/8267/packages/maven</url>
     </repository>
+    		<repository>
+			<id>jitpack.io</id>
+			<url>https://jitpack.io</url>
+		</repository>
   </repositories>
   <distributionManagement>
     <repository>
