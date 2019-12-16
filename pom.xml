@@ -151,33 +151,33 @@
 			<artifactId>java-string-similarity</artifactId>
 			<version>RELEASE</version>
 		</dependency>
-		<!-- GitHub dependencies via https://jitpack.io - version: last commit number-->
+		<!-- GitLab RLP Maven dependencies -->
 		<dependency>
-			<groupId>com.github.linkedgeodesy</groupId>
+			<groupId>org.linkedgeodesy.jenaext</groupId>
 			<artifactId>jena-ext</artifactId>
-			<version>v0.1</version>
+			<version>1.0-SNAPSHOT</version>
 		</dependency>
 	</dependencies>
 	<repositories>
-	<repository>
-      <id>gitlab-maven</id>
-      <url>https://gitlab.rlp.net/api/v4/projects/8267/packages/maven</url>
-    </repository>
-    		<repository>
-			<id>jitpack.io</id>
-			<url>https://jitpack.io</url>
+		<repository>
+			<id>gitlab-maven</id>
+			<url>https://gitlab.rlp.net/api/v4/projects/8267/packages/maven</url>
 		</repository>
-  </repositories>
-  <distributionManagement>
-    <repository>
-      <id>gitlab-maven</id>
-      <url>https://gitlab.rlp.net/api/v4/projects/8267/packages/maven</url>
-    </repository>
-    <snapshotRepository>
-      <id>gitlab-maven</id>
-      <url>https://gitlab.rlp.net/api/v4/projects/8267/packages/maven</url>
-    </snapshotRepository>
-  </distributionManagement>
+		<repository>
+			<id>net.rlp.gitlab-jena-ext</id>
+			<url>https://gitlab.rlp.net/api/v4/projects/8182/packages/maven</url>
+		</repository>
+	</repositories>
+	<distributionManagement>
+		<repository>
+			<id>gitlab-maven</id>
+			<url>https://gitlab.rlp.net/api/v4/projects/8267/packages/maven</url>
+		</repository>
+		<snapshotRepository>
+			<id>gitlab-maven</id>
+			<url>https://gitlab.rlp.net/api/v4/projects/8267/packages/maven</url>
+		</snapshotRepository>
+	</distributionManagement>
 
 	
 	<reporting>
